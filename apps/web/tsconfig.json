@@ -1,0 +1,15 @@
+{
+  "extends": "@fantasy/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@fantasy/ui": ["../../packages/ui/src"],
+      "@fantasy/types": ["../../packages/types/src"],
+      "@fantasy/utils": ["../../packages/utils/src"],
+      "@fantasy/api-client": ["../../packages/api-client/src"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

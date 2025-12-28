@@ -1,0 +1,14 @@
+{
+  "name": "@fantasy/eslint-config",
+  "version": "1.0.0",
+  "main": "base.js",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint-config-prettier": ">=10.1.8",
+    "eslint-plugin-import": "^2.31.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=9.0.0"
+  }
+}

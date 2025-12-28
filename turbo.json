@@ -1,0 +1,32 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "dist/**", "build/**"],
+      "cache": true
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "outputs": [],
+      "cache": true
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": ["coverage/**"],
+      "cache": true
+    },
+    "typecheck": {
+      "outputs": [],
+      "cache": true
+    }
+  },
+  "globalEnv": [
+    "NODE_ENV",
+    "DATABASE_URL",
+    "REDIS_URL"
+  ]
+}
