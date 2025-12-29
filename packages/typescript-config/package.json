@@ -1,0 +1,8 @@
+{
+  "name": "@fantasy/typescript-config",
+  "version": "1.0.0",
+  "private": true,
+  "files": [
+    "*.json"
+  ]
+}
