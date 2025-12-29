@@ -3,9 +3,8 @@
   "extends": "./base.json",
   "compilerOptions": {
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
     "jsx": "preserve",
-    "noEmit": true,
-    "plugins": [{ "name": "next" }]
+    "plugins": [{ "name": "next" }],
+    "allowJs": true
   }
 }

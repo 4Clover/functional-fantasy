@@ -55,10 +55,24 @@ out/
 .env.*.local
 
 # IDE
-.idea/
 .vscode/
 *.swp
 *.swo
+# JetBrains IDE
+.idea/*
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+!.idea/runConfigurations/
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/vcs.xml
+!.idea/*.iml
+
+# User-specific (never commit)
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/shelf/
 
 # OS
 Thumbs.db
