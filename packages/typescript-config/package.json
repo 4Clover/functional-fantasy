@@ -2,6 +2,11 @@
   "name": "@fantasy/typescript-config",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
+  "exports": {
+    "./base.json": "./base.json",
+    "./nextjs.json": "./nextjs.json"
+  },
   "files": [
     "*.json"
   ]

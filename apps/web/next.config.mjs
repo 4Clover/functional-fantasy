@@ -1,12 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactCompiler: true,
-    eslint: {
-        ignoreDuringBuilds: false,
-    },
-    typescript: {
-        ignoreBuildErrors: false,
-    },
+  eslint: {
+    ignoreDuringBuilds: true, // Lint runs from root
+  },
+  transpilePackages: ['@fantasy/ui', '@fantasy/utils', '@fantasy/types', '@fantasy/api-client'],
 };
 
 export default nextConfig;
