@@ -12,5 +12,18 @@
   },
   "files": [
     "src"
-  ]
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fantasy/types": "workspace:*",
+    "axios": "^1.9.0",
+    "ioredis": "^5.6.1",
+    "zod": "^3.25.28"
+  },
+  "devDependencies": {
+    "@fantasy/typescript-config": "workspace:*",
+    "typescript": "^5.8.3"
+  }
 }

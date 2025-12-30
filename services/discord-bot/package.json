@@ -1,0 +1,25 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "deploy": "tsx src/deploy-commands.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fantasy/api-client": "workspace:*",
+    "@fantasy/database": "workspace:*",
+    "@fantasy/types": "workspace:*",
+    "bullmq": "^5.34.8",
+    "discord.js": "^14.19.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.1",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}

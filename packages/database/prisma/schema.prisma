@@ -1,0 +1,370 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+// ============================================
+// USER & AUTHENTICATION
+// ============================================
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  displayName String?
+  email       String?  @unique
+  avatarUrl   String?
+
+  platformAccounts  PlatformAccount[]
+  leagueMemberships LeagueMember[]
+
+  @@map("users")
+}
+
+model PlatformAccount {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  platform   Platform
+  platformId String
+  username   String?
+  avatarUrl  String?
+
+  accessToken  String?
+  refreshToken String?
+  expiresAt    DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([platform, platformId])
+  @@map("platform_accounts")
+}
+
+enum Platform {
+  SLEEPER
+  YAHOO
+  ESPN
+}
+
+// ============================================
+// LEAGUES
+// ============================================
+
+model League {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  platform         Platform
+  platformLeagueId String
+  name             String
+  season           Int
+  leagueType       LeagueType    @default(REDRAFT)
+  scoringFormat    ScoringFormat @default(PPR)
+  rosterSize       Int           @default(15)
+  teamCount        Int
+
+  members      LeagueMember[]
+  rosters      Roster[]
+  matchups     Matchup[]
+  transactions Transaction[]
+
+  @@unique([platform, platformLeagueId, season])
+  @@map("leagues")
+}
+
+enum LeagueType {
+  REDRAFT
+  KEEPER
+  DYNASTY
+}
+
+enum ScoringFormat {
+  STANDARD
+  HALF_PPR
+  PPR
+  CUSTOM
+}
+
+model LeagueMember {
+  id       String @id @default(cuid())
+
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  leagueId String
+  league   League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+
+  teamName      String?
+  teamAvatar    String?
+  rosterSlot    Int
+  wins          Int     @default(0)
+  losses        Int     @default(0)
+  ties          Int     @default(0)
+  pointsFor     Decimal @default(0) @db.Decimal(10, 2)
+  pointsAgainst Decimal @default(0) @db.Decimal(10, 2)
+
+  rosters Roster[]
+
+  @@unique([leagueId, rosterSlot])
+  @@unique([leagueId, userId])
+  @@map("league_members")
+}
+
+// ============================================
+// PLAYERS
+// ============================================
+
+model Player {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  nflverseId   String? @unique
+  sleeperId    String? @unique
+  yahooId      String? @unique
+  espnId       String? @unique
+
+  firstName    String
+  lastName     String
+  fullName     String
+  position     Position
+  team         String?
+  jerseyNumber Int?
+  status       PlayerStatus @default(ACTIVE)
+  injuryStatus String?
+  byeWeek      Int?
+
+  rosterPlayers RosterPlayer[]
+
+  @@index([position, team])
+  @@map("players")
+}
+
+enum Position {
+  QB
+  RB
+  WR
+  TE
+  K
+  DEF
+  DL
+  LB
+  DB
+  IDP
+}
+
+enum PlayerStatus {
+  ACTIVE
+  INACTIVE
+  INJURED_RESERVE
+  PRACTICE_SQUAD
+  FREE_AGENT
+  RETIRED
+}
+
+// ============================================
+// ROSTERS
+// ============================================
+
+model Roster {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leagueId String
+  league   League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+
+  memberId String
+  member   LeagueMember @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  week    Int
+  season  Int
+  players RosterPlayer[]
+
+  @@unique([memberId, week, season])
+  @@map("rosters")
+}
+
+model RosterPlayer {
+  id       String @id @default(cuid())
+
+  rosterId String
+  roster   Roster @relation(fields: [rosterId], references: [id], onDelete: Cascade)
+
+  playerId String
+  player   Player @relation(fields: [playerId], references: [id])
+
+  slot RosterSlot
+
+  @@unique([rosterId, playerId])
+  @@map("roster_players")
+}
+
+enum RosterSlot {
+  QB
+  RB
+  WR
+  TE
+  FLEX
+  SUPER_FLEX
+  K
+  DEF
+  DL
+  LB
+  DB
+  IDP
+  BN
+  IR
+  TAXI
+}
+
+// ============================================
+// MATCHUPS
+// ============================================
+
+model Matchup {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leagueId String
+  league   League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+
+  week          Int
+  season        Int
+  homeTeamSlot  Int
+  awayTeamSlot  Int
+  homeScore     Decimal? @db.Decimal(10, 2)
+  awayScore     Decimal? @db.Decimal(10, 2)
+  homeProjected Decimal? @db.Decimal(10, 2)
+  awayProjected Decimal? @db.Decimal(10, 2)
+  isPlayoffs    Boolean  @default(false)
+  matchupType   MatchupType @default(REGULAR)
+
+  @@unique([leagueId, week, season, homeTeamSlot, awayTeamSlot])
+  @@map("matchups")
+}
+
+enum MatchupType {
+  REGULAR
+  PLAYOFF
+  CONSOLATION
+  CHAMPIONSHIP
+  TOILET_BOWL
+}
+
+// ============================================
+// TRANSACTIONS
+// ============================================
+
+model Transaction {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  leagueId String
+  league   League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+
+  type        TransactionType
+  status      TransactionStatus @default(COMPLETE)
+  processedAt DateTime?
+  faabBid     Int?
+  metadata    Json?
+
+  adds  TransactionAdd[]
+  drops TransactionDrop[]
+
+  @@index([leagueId, createdAt])
+  @@map("transactions")
+}
+
+enum TransactionType {
+  TRADE
+  WAIVER
+  FREE_AGENT
+  COMMISSIONER
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETE
+  FAILED
+  VETOED
+}
+
+model TransactionAdd {
+  id            String      @id @default(cuid())
+  transactionId String
+  transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+
+  teamSlot Int
+  playerId String?
+  pickInfo Json?
+
+  @@map("transaction_adds")
+}
+
+model TransactionDrop {
+  id            String      @id @default(cuid())
+  transactionId String
+  transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+
+  teamSlot Int
+  playerId String?
+  pickInfo Json?
+
+  @@map("transaction_drops")
+}
+
+// ============================================
+// DISCORD BOT CONFIGURATION
+// ============================================
+
+model GuildConfig {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  guildId               String  @unique
+  guildName             String?
+  notificationChannelId String
+  sleeperLeagueId       String
+
+  // Notification preferences
+  tradeAlerts     Boolean @default(true)
+  waiverAlerts    Boolean @default(true)
+  injuryAlerts    Boolean @default(true)
+  lineupReminders Boolean @default(true)
+
+  // Timezone for scheduled notifications
+  timezone String @default("America/New_York")
+
+  @@index([sleeperLeagueId])
+  @@map("guild_configs")
+}
+
+model UserNotificationPreference {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  discordUserId String @unique
+
+  // DM notification preferences
+  dmTradeAlerts     Boolean @default(false)
+  dmLineupReminders Boolean @default(true)
+  dmInjuryAlerts    Boolean @default(false)
+
+  // Linked accounts
+  sleeperUserId String?
+
+  @@map("user_notification_preferences")
+}

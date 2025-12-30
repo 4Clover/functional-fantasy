@@ -24,9 +24,5 @@
       "cache": true
     }
   },
-  "globalEnv": [
-    "NODE_ENV",
-    "DATABASE_URL",
-    "REDIS_URL"
-  ]
+  "globalEnv": ["NODE_ENV", "DATABASE_URL", "REDIS_URL"]
 }

@@ -1,4 +1,15 @@
 packages:
-  - 'apps/*'
-  - 'packages/*'
-  - 'services/*'
+  - apps/*
+  - packages/*
+  - services/*
+
+enablePrePostScripts: true
+
+ignoredBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - esbuild
+  - prisma
+  - sharp
+
+onlyBuiltDependencies: '["prisma", "@prisma/client", "@prisma/engines", "esbuild", "sharp"]'
