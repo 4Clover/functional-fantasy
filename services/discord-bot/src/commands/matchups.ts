@@ -36,9 +36,9 @@ export const command: Command = {
       const week = interaction.options.getInteger('week') ?? state.week;
 
       const [matchups, rosters, users] = await Promise.all([
-        sleeperClient.getLeagueMatchups(config.sleeperLeagueId, week),
-        sleeperClient.getLeagueRosters(config.sleeperLeagueId),
-        sleeperClient.getLeagueUsers(config.sleeperLeagueId),
+        sleeperClient.getLeagueMatchups(config.platformLeagueId, week),
+        sleeperClient.getLeagueRosters(config.platformLeagueId),
+        sleeperClient.getLeagueUsers(config.platformLeagueId),
       ]);
 
       const userMap = new Map(users.map(u => [u.user_id, u]));

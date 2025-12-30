@@ -199,10 +199,11 @@ pnpm --filter @fantasy/database add -D prisma
 
 **File: `packages/database/prisma/schema.prisma`**
 
+> **Prisma 7 Note**: The `url` property is no longer supported in the datasource block. Connection URLs are configured in `prisma.config.ts` instead.
+
 ```prisma
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -550,6 +551,30 @@ export * from './generated/client';
 export type { PrismaClient };
 ```
 
+### Prisma Configuration
+
+**File: `packages/database/prisma.config.ts`**
+
+> **Prisma 7 Requirement**: Database connection URLs must be configured in `prisma.config.ts` using `defineConfig`.
+
+```typescript
+import { config } from 'dotenv';
+import { defineConfig, env } from 'prisma/config';
+
+// Load .env from project root
+config({ path: '../../.env' });
+
+export default defineConfig({
+  schema: 'prisma/schema.prisma',
+  migrations: {
+    path: 'prisma/migrations',
+  },
+  datasource: {
+    url: env('DATABASE_URL'),
+  },
+});
+```
+
 ### Migration Commands
 
 ```bash
@@ -557,10 +582,10 @@ export type { PrismaClient };
 pnpm --filter @fantasy/database exec prisma init
 
 # Create and apply migrations
-pnpm --filter @fantasy/database exec prisma migrate dev --name init
+pnpm --filter @fantasy/database db:migrate --name init
 
 # Generate client after schema changes
-pnpm --filter @fantasy/database exec prisma generate
+pnpm --filter @fantasy/database db:generate
 
 # Reset database (dev only)
 pnpm --filter @fantasy/database exec prisma migrate reset

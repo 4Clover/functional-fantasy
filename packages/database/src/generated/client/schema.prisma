@@ -1,6 +1,5 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -336,7 +335,10 @@ model GuildConfig {
   guildId               String  @unique
   guildName             String?
   notificationChannelId String
-  sleeperLeagueId       String
+
+  // Multi-platform league support
+  platform         Platform @default(SLEEPER)
+  platformLeagueId String
 
   // Notification preferences
   tradeAlerts     Boolean @default(true)
@@ -347,7 +349,7 @@ model GuildConfig {
   // Timezone for scheduled notifications
   timezone String @default("America/New_York")
 
-  @@index([sleeperLeagueId])
+  @@index([platformLeagueId])
   @@map("guild_configs")
 }
 
@@ -363,8 +365,10 @@ model UserNotificationPreference {
   dmLineupReminders Boolean @default(true)
   dmInjuryAlerts    Boolean @default(false)
 
-  // Linked accounts
+  // Multi-platform linked accounts
   sleeperUserId String?
+  yahooUserId   String?
+  espnUserId    String?
 
   @@map("user_notification_preferences")
 }

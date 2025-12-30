@@ -6,7 +6,7 @@ export class NotificationDispatcher {
 
   async sendToLeague(leagueId: string, embed: EmbedBuilder): Promise<void> {
     const configs = await prisma.guildConfig.findMany({
-      where: { sleeperLeagueId: leagueId },
+      where: { platformLeagueId: leagueId },
     });
 
     for (const config of configs) {

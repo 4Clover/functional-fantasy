@@ -45,12 +45,12 @@ export const command: Command = {
           guildId,
           guildName: interaction.guild?.name,
           notificationChannelId: channel.id,
-          sleeperLeagueId: leagueId,
+          platformLeagueId: leagueId,
         },
         update: {
           guildName: interaction.guild?.name,
           notificationChannelId: channel.id,
-          sleeperLeagueId: leagueId,
+          platformLeagueId: leagueId,
         },
       });
 

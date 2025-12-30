@@ -21,7 +21,7 @@ pnpm --filter discord-bot add bullmq
 # discord.js and ioredis already installed
 ```
 
-> **Prisma 7 Note**: This project uses Prisma 7 which requires both `prisma` and `@prisma/client` at version 7.x. The generator must use the new `prisma-client` provider (not the deprecated `prisma-client-js`), and the `output` field is now mandatory.
+> **Prisma 7 Note**: This project uses Prisma 7 which requires both `prisma` and `@prisma/client` at version 7.x. The `url` property is no longer supported in the datasource block—connection URLs are configured in `prisma.config.ts` using `defineConfig`. See Phase 1 for the full configuration.
 
 ---
 
@@ -521,7 +521,7 @@ export class NotificationDispatcher {
   async sendToLeague(leagueId: string, embed: EmbedBuilder): Promise<void> {
     // Find all guilds configured for this league
     const configs = await prisma.guildConfig.findMany({
-      where: { sleeperLeagueId: leagueId },
+      where: { platformLeagueId: leagueId },
     });
 
     for (const config of configs) {
@@ -729,11 +729,11 @@ export class PollingService {
   async start(): Promise<void> {
     // Get all configured leagues from database
     const configs = await prisma.guildConfig.findMany({
-      select: { sleeperLeagueId: true },
-      distinct: ['sleeperLeagueId'],
+      select: { platformLeagueId: true },
+      distinct: ['platformLeagueId'],
     });
 
-    const leagueIds = configs.map(c => c.sleeperLeagueId);
+    const leagueIds = configs.map(c => c.platformLeagueId);
 
     if (leagueIds.length > 0) {
       await this.poller.start(leagueIds);
@@ -794,12 +794,6 @@ export class StateService {
 Add to `packages/database/prisma/schema.prisma`:
 
 ```prisma
-// Prisma 7 requires the new prisma-client provider with mandatory output
-generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/client"
-}
-
 // ============================================
 // DISCORD BOT CONFIGURATION
 // ============================================
@@ -812,7 +806,10 @@ model GuildConfig {
   guildId               String  @unique
   guildName             String?
   notificationChannelId String
-  sleeperLeagueId       String
+
+  // Multi-platform league support (for future Yahoo/ESPN integration)
+  platform         Platform @default(SLEEPER)
+  platformLeagueId String
 
   // Notification preferences
   tradeAlerts     Boolean @default(true)
@@ -823,7 +820,7 @@ model GuildConfig {
   // Timezone for scheduled notifications
   timezone String @default("America/New_York")
 
-  @@index([sleeperLeagueId])
+  @@index([platformLeagueId])
   @@map("guild_configs")
 }
 

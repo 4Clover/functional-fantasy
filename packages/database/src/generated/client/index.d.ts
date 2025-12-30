@@ -2,7 +2,7 @@
  * Client
  **/
 
-import * as runtime from './runtime/library.js';
+import * as runtime from './runtime/client.js';
 import $Types = runtime.Types; // general types
 import $Public = runtime.Types.Public;
 import $Utils = runtime.Types.Utils;
@@ -230,7 +230,7 @@ export const TransactionStatus: typeof $Enums.TransactionStatus;
  * ```
  *
  *
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ * Read more in our [docs](https://pris.ly/d/client).
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
@@ -255,7 +255,7 @@ export class PrismaClient<
    * ```
    *
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+   * Read more in our [docs](https://pris.ly/d/client).
    */
 
   constructor(optionsArg?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
@@ -281,7 +281,7 @@ export class PrismaClient<
    * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $executeRaw<T = unknown>(
     query: TemplateStringsArray | Prisma.Sql,
@@ -296,7 +296,7 @@ export class PrismaClient<
    * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
 
@@ -307,7 +307,7 @@ export class PrismaClient<
    * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $queryRaw<T = unknown>(
     query: TemplateStringsArray | Prisma.Sql,
@@ -322,7 +322,7 @@ export class PrismaClient<
    * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
@@ -535,14 +535,6 @@ export namespace Prisma {
   export type DecimalJsLike = runtime.DecimalJsLike;
 
   /**
-   * Metrics
-   */
-  export type Metrics = runtime.Metrics;
-  export type Metric<T> = runtime.Metric<T>;
-  export type MetricHistogram = runtime.MetricHistogram;
-  export type MetricHistogramBucket = runtime.MetricHistogramBucket;
-
-  /**
    * Extensions
    */
   export import Extension = $Extensions.UserArgs;
@@ -553,11 +545,12 @@ export namespace Prisma {
   export import Exact = $Public.Exact;
 
   /**
-   * Prisma Client JS version: 6.19.1
-   * Query Engine version: c2990dca591cba766e3b7ef5d9e8a84796e47ab7
+   * Prisma Client JS version: 7.2.0
+   * Query Engine version: 0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
    */
   export type PrismaVersion = {
     client: string;
+    engine: string;
   };
 
   export const prismaVersion: PrismaVersion;
@@ -948,10 +941,6 @@ export namespace Prisma {
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName];
-
-  export type Datasources = {
-    db?: Datasource;
-  };
 
   interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<
     { extArgs: $Extensions.InternalArgs },
@@ -1983,14 +1972,6 @@ export namespace Prisma {
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal';
   export interface PrismaClientOptions {
     /**
-     * Overwrites the datasource url from your schema.prisma file
-     */
-    datasources?: Datasources;
-    /**
-     * Overwrites the datasource url from your schema.prisma file
-     */
-    datasourceUrl?: string;
-    /**
      * @default "colorless"
      */
     errorFormat?: ErrorFormat;
@@ -2016,7 +1997,7 @@ export namespace Prisma {
      *  { emit: 'stdout', level: 'error' }
      *
      * ```
-     * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
+     * Read more in our [docs](https://pris.ly/d/logging).
      */
     log?: (LogLevel | LogDefinition)[];
     /**
@@ -2032,7 +2013,11 @@ export namespace Prisma {
     /**
      * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
      */
-    adapter?: runtime.SqlDriverAdapterFactory | null;
+    adapter?: runtime.SqlDriverAdapterFactory;
+    /**
+     * Prisma Accelerate URL allowing the client to connect through Accelerate instead of a direct database.
+     */
+    accelerateUrl?: string;
     /**
      * Global configuration for omitting model fields by default.
      *
@@ -2048,6 +2033,22 @@ export namespace Prisma {
      * ```
      */
     omit?: Prisma.GlobalOmitConfig;
+    /**
+     * SQL commenter plugins that add metadata to SQL queries as comments.
+     * Comments follow the sqlcommenter format: https://google.github.io/sqlcommenter/
+     *
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   adapter,
+     *   comments: [
+     *     traceContext(),
+     *     queryInsights(),
+     *   ],
+     * })
+     * ```
+     */
+    comments?: runtime.SqlCommenterPlugin[];
   }
   export type GlobalOmitConfig = {
     user?: UserOmit;
@@ -17162,7 +17163,8 @@ export namespace Prisma {
     guildId: string | null;
     guildName: string | null;
     notificationChannelId: string | null;
-    sleeperLeagueId: string | null;
+    platform: $Enums.Platform | null;
+    platformLeagueId: string | null;
     tradeAlerts: boolean | null;
     waiverAlerts: boolean | null;
     injuryAlerts: boolean | null;
@@ -17177,7 +17179,8 @@ export namespace Prisma {
     guildId: string | null;
     guildName: string | null;
     notificationChannelId: string | null;
-    sleeperLeagueId: string | null;
+    platform: $Enums.Platform | null;
+    platformLeagueId: string | null;
     tradeAlerts: boolean | null;
     waiverAlerts: boolean | null;
     injuryAlerts: boolean | null;
@@ -17192,7 +17195,8 @@ export namespace Prisma {
     guildId: number;
     guildName: number;
     notificationChannelId: number;
-    sleeperLeagueId: number;
+    platform: number;
+    platformLeagueId: number;
     tradeAlerts: number;
     waiverAlerts: number;
     injuryAlerts: number;
@@ -17208,7 +17212,8 @@ export namespace Prisma {
     guildId?: true;
     guildName?: true;
     notificationChannelId?: true;
-    sleeperLeagueId?: true;
+    platform?: true;
+    platformLeagueId?: true;
     tradeAlerts?: true;
     waiverAlerts?: true;
     injuryAlerts?: true;
@@ -17223,7 +17228,8 @@ export namespace Prisma {
     guildId?: true;
     guildName?: true;
     notificationChannelId?: true;
-    sleeperLeagueId?: true;
+    platform?: true;
+    platformLeagueId?: true;
     tradeAlerts?: true;
     waiverAlerts?: true;
     injuryAlerts?: true;
@@ -17238,7 +17244,8 @@ export namespace Prisma {
     guildId?: true;
     guildName?: true;
     notificationChannelId?: true;
-    sleeperLeagueId?: true;
+    platform?: true;
+    platformLeagueId?: true;
     tradeAlerts?: true;
     waiverAlerts?: true;
     injuryAlerts?: true;
@@ -17327,7 +17334,8 @@ export namespace Prisma {
     guildId: string;
     guildName: string | null;
     notificationChannelId: string;
-    sleeperLeagueId: string;
+    platform: $Enums.Platform;
+    platformLeagueId: string;
     tradeAlerts: boolean;
     waiverAlerts: boolean;
     injuryAlerts: boolean;
@@ -17360,7 +17368,8 @@ export namespace Prisma {
       guildId?: boolean;
       guildName?: boolean;
       notificationChannelId?: boolean;
-      sleeperLeagueId?: boolean;
+      platform?: boolean;
+      platformLeagueId?: boolean;
       tradeAlerts?: boolean;
       waiverAlerts?: boolean;
       injuryAlerts?: boolean;
@@ -17380,7 +17389,8 @@ export namespace Prisma {
       guildId?: boolean;
       guildName?: boolean;
       notificationChannelId?: boolean;
-      sleeperLeagueId?: boolean;
+      platform?: boolean;
+      platformLeagueId?: boolean;
       tradeAlerts?: boolean;
       waiverAlerts?: boolean;
       injuryAlerts?: boolean;
@@ -17400,7 +17410,8 @@ export namespace Prisma {
       guildId?: boolean;
       guildName?: boolean;
       notificationChannelId?: boolean;
-      sleeperLeagueId?: boolean;
+      platform?: boolean;
+      platformLeagueId?: boolean;
       tradeAlerts?: boolean;
       waiverAlerts?: boolean;
       injuryAlerts?: boolean;
@@ -17417,7 +17428,8 @@ export namespace Prisma {
     guildId?: boolean;
     guildName?: boolean;
     notificationChannelId?: boolean;
-    sleeperLeagueId?: boolean;
+    platform?: boolean;
+    platformLeagueId?: boolean;
     tradeAlerts?: boolean;
     waiverAlerts?: boolean;
     injuryAlerts?: boolean;
@@ -17433,7 +17445,8 @@ export namespace Prisma {
       | 'guildId'
       | 'guildName'
       | 'notificationChannelId'
-      | 'sleeperLeagueId'
+      | 'platform'
+      | 'platformLeagueId'
       | 'tradeAlerts'
       | 'waiverAlerts'
       | 'injuryAlerts'
@@ -17455,7 +17468,8 @@ export namespace Prisma {
         guildId: string;
         guildName: string | null;
         notificationChannelId: string;
-        sleeperLeagueId: string;
+        platform: $Enums.Platform;
+        platformLeagueId: string;
         tradeAlerts: boolean;
         waiverAlerts: boolean;
         injuryAlerts: boolean;
@@ -18005,7 +18019,8 @@ export namespace Prisma {
     readonly guildId: FieldRef<'GuildConfig', 'String'>;
     readonly guildName: FieldRef<'GuildConfig', 'String'>;
     readonly notificationChannelId: FieldRef<'GuildConfig', 'String'>;
-    readonly sleeperLeagueId: FieldRef<'GuildConfig', 'String'>;
+    readonly platform: FieldRef<'GuildConfig', 'Platform'>;
+    readonly platformLeagueId: FieldRef<'GuildConfig', 'String'>;
     readonly tradeAlerts: FieldRef<'GuildConfig', 'Boolean'>;
     readonly waiverAlerts: FieldRef<'GuildConfig', 'Boolean'>;
     readonly injuryAlerts: FieldRef<'GuildConfig', 'Boolean'>;
@@ -18424,6 +18439,8 @@ export namespace Prisma {
     dmLineupReminders: boolean | null;
     dmInjuryAlerts: boolean | null;
     sleeperUserId: string | null;
+    yahooUserId: string | null;
+    espnUserId: string | null;
   };
 
   export type UserNotificationPreferenceMaxAggregateOutputType = {
@@ -18435,6 +18452,8 @@ export namespace Prisma {
     dmLineupReminders: boolean | null;
     dmInjuryAlerts: boolean | null;
     sleeperUserId: string | null;
+    yahooUserId: string | null;
+    espnUserId: string | null;
   };
 
   export type UserNotificationPreferenceCountAggregateOutputType = {
@@ -18446,6 +18465,8 @@ export namespace Prisma {
     dmLineupReminders: number;
     dmInjuryAlerts: number;
     sleeperUserId: number;
+    yahooUserId: number;
+    espnUserId: number;
     _all: number;
   };
 
@@ -18458,6 +18479,8 @@ export namespace Prisma {
     dmLineupReminders?: true;
     dmInjuryAlerts?: true;
     sleeperUserId?: true;
+    yahooUserId?: true;
+    espnUserId?: true;
   };
 
   export type UserNotificationPreferenceMaxAggregateInputType = {
@@ -18469,6 +18492,8 @@ export namespace Prisma {
     dmLineupReminders?: true;
     dmInjuryAlerts?: true;
     sleeperUserId?: true;
+    yahooUserId?: true;
+    espnUserId?: true;
   };
 
   export type UserNotificationPreferenceCountAggregateInputType = {
@@ -18480,6 +18505,8 @@ export namespace Prisma {
     dmLineupReminders?: true;
     dmInjuryAlerts?: true;
     sleeperUserId?: true;
+    yahooUserId?: true;
+    espnUserId?: true;
     _all?: true;
   };
 
@@ -18571,6 +18598,8 @@ export namespace Prisma {
     dmLineupReminders: boolean;
     dmInjuryAlerts: boolean;
     sleeperUserId: string | null;
+    yahooUserId: string | null;
+    espnUserId: string | null;
     _count: UserNotificationPreferenceCountAggregateOutputType | null;
     _min: UserNotificationPreferenceMinAggregateOutputType | null;
     _max: UserNotificationPreferenceMaxAggregateOutputType | null;
@@ -18602,6 +18631,8 @@ export namespace Prisma {
       dmLineupReminders?: boolean;
       dmInjuryAlerts?: boolean;
       sleeperUserId?: boolean;
+      yahooUserId?: boolean;
+      espnUserId?: boolean;
     },
     ExtArgs['result']['userNotificationPreference']
   >;
@@ -18618,6 +18649,8 @@ export namespace Prisma {
       dmLineupReminders?: boolean;
       dmInjuryAlerts?: boolean;
       sleeperUserId?: boolean;
+      yahooUserId?: boolean;
+      espnUserId?: boolean;
     },
     ExtArgs['result']['userNotificationPreference']
   >;
@@ -18634,6 +18667,8 @@ export namespace Prisma {
       dmLineupReminders?: boolean;
       dmInjuryAlerts?: boolean;
       sleeperUserId?: boolean;
+      yahooUserId?: boolean;
+      espnUserId?: boolean;
     },
     ExtArgs['result']['userNotificationPreference']
   >;
@@ -18647,6 +18682,8 @@ export namespace Prisma {
     dmLineupReminders?: boolean;
     dmInjuryAlerts?: boolean;
     sleeperUserId?: boolean;
+    yahooUserId?: boolean;
+    espnUserId?: boolean;
   };
 
   export type UserNotificationPreferenceOmit<
@@ -18659,7 +18696,9 @@ export namespace Prisma {
     | 'dmTradeAlerts'
     | 'dmLineupReminders'
     | 'dmInjuryAlerts'
-    | 'sleeperUserId',
+    | 'sleeperUserId'
+    | 'yahooUserId'
+    | 'espnUserId',
     ExtArgs['result']['userNotificationPreference']
   >;
 
@@ -18678,6 +18717,8 @@ export namespace Prisma {
         dmLineupReminders: boolean;
         dmInjuryAlerts: boolean;
         sleeperUserId: string | null;
+        yahooUserId: string | null;
+        espnUserId: string | null;
       },
       ExtArgs['result']['userNotificationPreference']
     >;
@@ -19253,6 +19294,8 @@ export namespace Prisma {
     readonly dmLineupReminders: FieldRef<'UserNotificationPreference', 'Boolean'>;
     readonly dmInjuryAlerts: FieldRef<'UserNotificationPreference', 'Boolean'>;
     readonly sleeperUserId: FieldRef<'UserNotificationPreference', 'String'>;
+    readonly yahooUserId: FieldRef<'UserNotificationPreference', 'String'>;
+    readonly espnUserId: FieldRef<'UserNotificationPreference', 'String'>;
   }
 
   // Custom InputTypes
@@ -19861,7 +19904,8 @@ export namespace Prisma {
     guildId: 'guildId';
     guildName: 'guildName';
     notificationChannelId: 'notificationChannelId';
-    sleeperLeagueId: 'sleeperLeagueId';
+    platform: 'platform';
+    platformLeagueId: 'platformLeagueId';
     tradeAlerts: 'tradeAlerts';
     waiverAlerts: 'waiverAlerts';
     injuryAlerts: 'injuryAlerts';
@@ -19881,6 +19925,8 @@ export namespace Prisma {
     dmLineupReminders: 'dmLineupReminders';
     dmInjuryAlerts: 'dmInjuryAlerts';
     sleeperUserId: 'sleeperUserId';
+    yahooUserId: 'yahooUserId';
+    espnUserId: 'espnUserId';
   };
 
   export type UserNotificationPreferenceScalarFieldEnum =
@@ -21141,7 +21187,8 @@ export namespace Prisma {
     guildId?: StringFilter<'GuildConfig'> | string;
     guildName?: StringNullableFilter<'GuildConfig'> | string | null;
     notificationChannelId?: StringFilter<'GuildConfig'> | string;
-    sleeperLeagueId?: StringFilter<'GuildConfig'> | string;
+    platform?: EnumPlatformFilter<'GuildConfig'> | $Enums.Platform;
+    platformLeagueId?: StringFilter<'GuildConfig'> | string;
     tradeAlerts?: BoolFilter<'GuildConfig'> | boolean;
     waiverAlerts?: BoolFilter<'GuildConfig'> | boolean;
     injuryAlerts?: BoolFilter<'GuildConfig'> | boolean;
@@ -21156,7 +21203,8 @@ export namespace Prisma {
     guildId?: SortOrder;
     guildName?: SortOrderInput | SortOrder;
     notificationChannelId?: SortOrder;
-    sleeperLeagueId?: SortOrder;
+    platform?: SortOrder;
+    platformLeagueId?: SortOrder;
     tradeAlerts?: SortOrder;
     waiverAlerts?: SortOrder;
     injuryAlerts?: SortOrder;
@@ -21175,7 +21223,8 @@ export namespace Prisma {
       updatedAt?: DateTimeFilter<'GuildConfig'> | Date | string;
       guildName?: StringNullableFilter<'GuildConfig'> | string | null;
       notificationChannelId?: StringFilter<'GuildConfig'> | string;
-      sleeperLeagueId?: StringFilter<'GuildConfig'> | string;
+      platform?: EnumPlatformFilter<'GuildConfig'> | $Enums.Platform;
+      platformLeagueId?: StringFilter<'GuildConfig'> | string;
       tradeAlerts?: BoolFilter<'GuildConfig'> | boolean;
       waiverAlerts?: BoolFilter<'GuildConfig'> | boolean;
       injuryAlerts?: BoolFilter<'GuildConfig'> | boolean;
@@ -21192,7 +21241,8 @@ export namespace Prisma {
     guildId?: SortOrder;
     guildName?: SortOrderInput | SortOrder;
     notificationChannelId?: SortOrder;
-    sleeperLeagueId?: SortOrder;
+    platform?: SortOrder;
+    platformLeagueId?: SortOrder;
     tradeAlerts?: SortOrder;
     waiverAlerts?: SortOrder;
     injuryAlerts?: SortOrder;
@@ -21213,7 +21263,8 @@ export namespace Prisma {
     guildId?: StringWithAggregatesFilter<'GuildConfig'> | string;
     guildName?: StringNullableWithAggregatesFilter<'GuildConfig'> | string | null;
     notificationChannelId?: StringWithAggregatesFilter<'GuildConfig'> | string;
-    sleeperLeagueId?: StringWithAggregatesFilter<'GuildConfig'> | string;
+    platform?: EnumPlatformWithAggregatesFilter<'GuildConfig'> | $Enums.Platform;
+    platformLeagueId?: StringWithAggregatesFilter<'GuildConfig'> | string;
     tradeAlerts?: BoolWithAggregatesFilter<'GuildConfig'> | boolean;
     waiverAlerts?: BoolWithAggregatesFilter<'GuildConfig'> | boolean;
     injuryAlerts?: BoolWithAggregatesFilter<'GuildConfig'> | boolean;
@@ -21233,6 +21284,8 @@ export namespace Prisma {
     dmLineupReminders?: BoolFilter<'UserNotificationPreference'> | boolean;
     dmInjuryAlerts?: BoolFilter<'UserNotificationPreference'> | boolean;
     sleeperUserId?: StringNullableFilter<'UserNotificationPreference'> | string | null;
+    yahooUserId?: StringNullableFilter<'UserNotificationPreference'> | string | null;
+    espnUserId?: StringNullableFilter<'UserNotificationPreference'> | string | null;
   };
 
   export type UserNotificationPreferenceOrderByWithRelationInput = {
@@ -21244,6 +21297,8 @@ export namespace Prisma {
     dmLineupReminders?: SortOrder;
     dmInjuryAlerts?: SortOrder;
     sleeperUserId?: SortOrderInput | SortOrder;
+    yahooUserId?: SortOrderInput | SortOrder;
+    espnUserId?: SortOrderInput | SortOrder;
   };
 
   export type UserNotificationPreferenceWhereUniqueInput = Prisma.AtLeast<
@@ -21259,6 +21314,8 @@ export namespace Prisma {
       dmLineupReminders?: BoolFilter<'UserNotificationPreference'> | boolean;
       dmInjuryAlerts?: BoolFilter<'UserNotificationPreference'> | boolean;
       sleeperUserId?: StringNullableFilter<'UserNotificationPreference'> | string | null;
+      yahooUserId?: StringNullableFilter<'UserNotificationPreference'> | string | null;
+      espnUserId?: StringNullableFilter<'UserNotificationPreference'> | string | null;
     },
     'id' | 'discordUserId'
   >;
@@ -21272,6 +21329,8 @@ export namespace Prisma {
     dmLineupReminders?: SortOrder;
     dmInjuryAlerts?: SortOrder;
     sleeperUserId?: SortOrderInput | SortOrder;
+    yahooUserId?: SortOrderInput | SortOrder;
+    espnUserId?: SortOrderInput | SortOrder;
     _count?: UserNotificationPreferenceCountOrderByAggregateInput;
     _max?: UserNotificationPreferenceMaxOrderByAggregateInput;
     _min?: UserNotificationPreferenceMinOrderByAggregateInput;
@@ -21296,6 +21355,8 @@ export namespace Prisma {
       | StringNullableWithAggregatesFilter<'UserNotificationPreference'>
       | string
       | null;
+    yahooUserId?: StringNullableWithAggregatesFilter<'UserNotificationPreference'> | string | null;
+    espnUserId?: StringNullableWithAggregatesFilter<'UserNotificationPreference'> | string | null;
   };
 
   export type UserCreateInput = {
@@ -22351,7 +22412,8 @@ export namespace Prisma {
     guildId: string;
     guildName?: string | null;
     notificationChannelId: string;
-    sleeperLeagueId: string;
+    platform?: $Enums.Platform;
+    platformLeagueId: string;
     tradeAlerts?: boolean;
     waiverAlerts?: boolean;
     injuryAlerts?: boolean;
@@ -22366,7 +22428,8 @@ export namespace Prisma {
     guildId: string;
     guildName?: string | null;
     notificationChannelId: string;
-    sleeperLeagueId: string;
+    platform?: $Enums.Platform;
+    platformLeagueId: string;
     tradeAlerts?: boolean;
     waiverAlerts?: boolean;
     injuryAlerts?: boolean;
@@ -22381,7 +22444,8 @@ export namespace Prisma {
     guildId?: StringFieldUpdateOperationsInput | string;
     guildName?: NullableStringFieldUpdateOperationsInput | string | null;
     notificationChannelId?: StringFieldUpdateOperationsInput | string;
-    sleeperLeagueId?: StringFieldUpdateOperationsInput | string;
+    platform?: EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+    platformLeagueId?: StringFieldUpdateOperationsInput | string;
     tradeAlerts?: BoolFieldUpdateOperationsInput | boolean;
     waiverAlerts?: BoolFieldUpdateOperationsInput | boolean;
     injuryAlerts?: BoolFieldUpdateOperationsInput | boolean;
@@ -22396,7 +22460,8 @@ export namespace Prisma {
     guildId?: StringFieldUpdateOperationsInput | string;
     guildName?: NullableStringFieldUpdateOperationsInput | string | null;
     notificationChannelId?: StringFieldUpdateOperationsInput | string;
-    sleeperLeagueId?: StringFieldUpdateOperationsInput | string;
+    platform?: EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+    platformLeagueId?: StringFieldUpdateOperationsInput | string;
     tradeAlerts?: BoolFieldUpdateOperationsInput | boolean;
     waiverAlerts?: BoolFieldUpdateOperationsInput | boolean;
     injuryAlerts?: BoolFieldUpdateOperationsInput | boolean;
@@ -22411,7 +22476,8 @@ export namespace Prisma {
     guildId: string;
     guildName?: string | null;
     notificationChannelId: string;
-    sleeperLeagueId: string;
+    platform?: $Enums.Platform;
+    platformLeagueId: string;
     tradeAlerts?: boolean;
     waiverAlerts?: boolean;
     injuryAlerts?: boolean;
@@ -22426,7 +22492,8 @@ export namespace Prisma {
     guildId?: StringFieldUpdateOperationsInput | string;
     guildName?: NullableStringFieldUpdateOperationsInput | string | null;
     notificationChannelId?: StringFieldUpdateOperationsInput | string;
-    sleeperLeagueId?: StringFieldUpdateOperationsInput | string;
+    platform?: EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+    platformLeagueId?: StringFieldUpdateOperationsInput | string;
     tradeAlerts?: BoolFieldUpdateOperationsInput | boolean;
     waiverAlerts?: BoolFieldUpdateOperationsInput | boolean;
     injuryAlerts?: BoolFieldUpdateOperationsInput | boolean;
@@ -22441,7 +22508,8 @@ export namespace Prisma {
     guildId?: StringFieldUpdateOperationsInput | string;
     guildName?: NullableStringFieldUpdateOperationsInput | string | null;
     notificationChannelId?: StringFieldUpdateOperationsInput | string;
-    sleeperLeagueId?: StringFieldUpdateOperationsInput | string;
+    platform?: EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+    platformLeagueId?: StringFieldUpdateOperationsInput | string;
     tradeAlerts?: BoolFieldUpdateOperationsInput | boolean;
     waiverAlerts?: BoolFieldUpdateOperationsInput | boolean;
     injuryAlerts?: BoolFieldUpdateOperationsInput | boolean;
@@ -22458,6 +22526,8 @@ export namespace Prisma {
     dmLineupReminders?: boolean;
     dmInjuryAlerts?: boolean;
     sleeperUserId?: string | null;
+    yahooUserId?: string | null;
+    espnUserId?: string | null;
   };
 
   export type UserNotificationPreferenceUncheckedCreateInput = {
@@ -22469,6 +22539,8 @@ export namespace Prisma {
     dmLineupReminders?: boolean;
     dmInjuryAlerts?: boolean;
     sleeperUserId?: string | null;
+    yahooUserId?: string | null;
+    espnUserId?: string | null;
   };
 
   export type UserNotificationPreferenceUpdateInput = {
@@ -22480,6 +22552,8 @@ export namespace Prisma {
     dmLineupReminders?: BoolFieldUpdateOperationsInput | boolean;
     dmInjuryAlerts?: BoolFieldUpdateOperationsInput | boolean;
     sleeperUserId?: NullableStringFieldUpdateOperationsInput | string | null;
+    yahooUserId?: NullableStringFieldUpdateOperationsInput | string | null;
+    espnUserId?: NullableStringFieldUpdateOperationsInput | string | null;
   };
 
   export type UserNotificationPreferenceUncheckedUpdateInput = {
@@ -22491,6 +22565,8 @@ export namespace Prisma {
     dmLineupReminders?: BoolFieldUpdateOperationsInput | boolean;
     dmInjuryAlerts?: BoolFieldUpdateOperationsInput | boolean;
     sleeperUserId?: NullableStringFieldUpdateOperationsInput | string | null;
+    yahooUserId?: NullableStringFieldUpdateOperationsInput | string | null;
+    espnUserId?: NullableStringFieldUpdateOperationsInput | string | null;
   };
 
   export type UserNotificationPreferenceCreateManyInput = {
@@ -22502,6 +22578,8 @@ export namespace Prisma {
     dmLineupReminders?: boolean;
     dmInjuryAlerts?: boolean;
     sleeperUserId?: string | null;
+    yahooUserId?: string | null;
+    espnUserId?: string | null;
   };
 
   export type UserNotificationPreferenceUpdateManyMutationInput = {
@@ -22513,6 +22591,8 @@ export namespace Prisma {
     dmLineupReminders?: BoolFieldUpdateOperationsInput | boolean;
     dmInjuryAlerts?: BoolFieldUpdateOperationsInput | boolean;
     sleeperUserId?: NullableStringFieldUpdateOperationsInput | string | null;
+    yahooUserId?: NullableStringFieldUpdateOperationsInput | string | null;
+    espnUserId?: NullableStringFieldUpdateOperationsInput | string | null;
   };
 
   export type UserNotificationPreferenceUncheckedUpdateManyInput = {
@@ -22524,6 +22604,8 @@ export namespace Prisma {
     dmLineupReminders?: BoolFieldUpdateOperationsInput | boolean;
     dmInjuryAlerts?: BoolFieldUpdateOperationsInput | boolean;
     sleeperUserId?: NullableStringFieldUpdateOperationsInput | string | null;
+    yahooUserId?: NullableStringFieldUpdateOperationsInput | string | null;
+    espnUserId?: NullableStringFieldUpdateOperationsInput | string | null;
   };
 
   export type StringFilter<$PrismaModel = never> = {
@@ -23667,7 +23749,8 @@ export namespace Prisma {
     guildId?: SortOrder;
     guildName?: SortOrder;
     notificationChannelId?: SortOrder;
-    sleeperLeagueId?: SortOrder;
+    platform?: SortOrder;
+    platformLeagueId?: SortOrder;
     tradeAlerts?: SortOrder;
     waiverAlerts?: SortOrder;
     injuryAlerts?: SortOrder;
@@ -23682,7 +23765,8 @@ export namespace Prisma {
     guildId?: SortOrder;
     guildName?: SortOrder;
     notificationChannelId?: SortOrder;
-    sleeperLeagueId?: SortOrder;
+    platform?: SortOrder;
+    platformLeagueId?: SortOrder;
     tradeAlerts?: SortOrder;
     waiverAlerts?: SortOrder;
     injuryAlerts?: SortOrder;
@@ -23697,7 +23781,8 @@ export namespace Prisma {
     guildId?: SortOrder;
     guildName?: SortOrder;
     notificationChannelId?: SortOrder;
-    sleeperLeagueId?: SortOrder;
+    platform?: SortOrder;
+    platformLeagueId?: SortOrder;
     tradeAlerts?: SortOrder;
     waiverAlerts?: SortOrder;
     injuryAlerts?: SortOrder;
@@ -23714,6 +23799,8 @@ export namespace Prisma {
     dmLineupReminders?: SortOrder;
     dmInjuryAlerts?: SortOrder;
     sleeperUserId?: SortOrder;
+    yahooUserId?: SortOrder;
+    espnUserId?: SortOrder;
   };
 
   export type UserNotificationPreferenceMaxOrderByAggregateInput = {
@@ -23725,6 +23812,8 @@ export namespace Prisma {
     dmLineupReminders?: SortOrder;
     dmInjuryAlerts?: SortOrder;
     sleeperUserId?: SortOrder;
+    yahooUserId?: SortOrder;
+    espnUserId?: SortOrder;
   };
 
   export type UserNotificationPreferenceMinOrderByAggregateInput = {
@@ -23736,6 +23825,8 @@ export namespace Prisma {
     dmLineupReminders?: SortOrder;
     dmInjuryAlerts?: SortOrder;
     sleeperUserId?: SortOrder;
+    yahooUserId?: SortOrder;
+    espnUserId?: SortOrder;
   };
 
   export type PlatformAccountCreateNestedManyWithoutUserInput = {

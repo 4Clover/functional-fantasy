@@ -21,11 +21,11 @@ export class PollingService {
 
   async start(): Promise<void> {
     const configs = await prisma.guildConfig.findMany({
-      select: { sleeperLeagueId: true },
-      distinct: ['sleeperLeagueId'],
+      select: { platformLeagueId: true },
+      distinct: ['platformLeagueId'],
     });
 
-    const leagueIds = configs.map(c => c.sleeperLeagueId);
+    const leagueIds = configs.map(c => c.platformLeagueId);
 
     if (leagueIds.length > 0) {
       await this.poller.start(leagueIds);

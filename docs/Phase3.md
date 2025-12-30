@@ -1112,6 +1112,8 @@ export class ESPNScorePoller {
 
 ## 5. Database Schema Updates
 
+> **Prisma 7 Note**: Remember that the `url` property is no longer supported in the datasource block. See Phase 1 for the `prisma.config.ts` configuration.
+
 ### 5.1 GuildConfig Enhancement
 
 ```prisma

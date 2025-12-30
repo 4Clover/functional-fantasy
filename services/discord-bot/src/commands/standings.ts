@@ -33,9 +33,9 @@ export const command: Command = {
       const cachedClient = new CachedSleeperClient(sleeperClient, cache);
 
       const [league, rosters, users] = await Promise.all([
-        cachedClient.getLeague(config.sleeperLeagueId),
-        cachedClient.getLeagueRosters(config.sleeperLeagueId),
-        sleeperClient.getLeagueUsers(config.sleeperLeagueId),
+        cachedClient.getLeague(config.platformLeagueId),
+        cachedClient.getLeagueRosters(config.platformLeagueId),
+        sleeperClient.getLeagueUsers(config.platformLeagueId),
       ]);
 
       await cache.disconnect();

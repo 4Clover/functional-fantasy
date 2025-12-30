@@ -6,7 +6,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const {
   Decimal,
-  objectEnumValues,
+  DbNull,
+  JsonNull,
+  AnyNull,
+  NullTypes,
   makeStrictEnum,
   Public,
   getRuntime,
@@ -19,12 +22,12 @@ exports.Prisma = Prisma;
 exports.$Enums = {};
 
 /**
- * Prisma Client JS version: 6.19.1
- * Query Engine version: c2990dca591cba766e3b7ef5d9e8a84796e47ab7
+ * Prisma Client JS version: 7.2.0
+ * Query Engine version: 0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
  */
 Prisma.prismaVersion = {
-  client: '6.19.1',
-  engine: 'c2990dca591cba766e3b7ef5d9e8a84796e47ab7',
+  client: '7.2.0',
+  engine: '0c8ef2ce45c83248ab3df073180d5eda9e8be7a3',
 };
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -96,15 +99,11 @@ In case this error is unexpected for you, please report it in https://pris.ly/pr
 /**
  * Shorthand utilities for JSON filtering
  */
-Prisma.DbNull = objectEnumValues.instances.DbNull;
-Prisma.JsonNull = objectEnumValues.instances.JsonNull;
-Prisma.AnyNull = objectEnumValues.instances.AnyNull;
+Prisma.DbNull = DbNull;
+Prisma.JsonNull = JsonNull;
+Prisma.AnyNull = AnyNull;
 
-Prisma.NullTypes = {
-  DbNull: objectEnumValues.classes.DbNull,
-  JsonNull: objectEnumValues.classes.JsonNull,
-  AnyNull: objectEnumValues.classes.AnyNull,
-};
+Prisma.NullTypes = NullTypes;
 
 /**
  * Enums
@@ -255,7 +254,8 @@ exports.Prisma.GuildConfigScalarFieldEnum = {
   guildId: 'guildId',
   guildName: 'guildName',
   notificationChannelId: 'notificationChannelId',
-  sleeperLeagueId: 'sleeperLeagueId',
+  platform: 'platform',
+  platformLeagueId: 'platformLeagueId',
   tradeAlerts: 'tradeAlerts',
   waiverAlerts: 'waiverAlerts',
   injuryAlerts: 'injuryAlerts',
@@ -272,6 +272,8 @@ exports.Prisma.UserNotificationPreferenceScalarFieldEnum = {
   dmLineupReminders: 'dmLineupReminders',
   dmInjuryAlerts: 'dmInjuryAlerts',
   sleeperUserId: 'sleeperUserId',
+  yahooUserId: 'yahooUserId',
+  espnUserId: 'espnUserId',
 };
 
 exports.Prisma.SortOrder = {
