@@ -7,6 +7,8 @@
       <excludeFolder url="file://$MODULE_DIR$/apps/web/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/apps/web/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/.claude" />
+      <excludeFolder url="file://$MODULE_DIR$/docs" />
     </content>
     <content url="file://$MODULE_DIR$/apps/web/.next" />
     <content url="file://$MODULE_DIR$/apps/web/.next/types" />
