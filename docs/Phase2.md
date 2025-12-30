@@ -11,7 +11,7 @@
 | discord.js     | ^14.19.3 | Discord API wrapper with slash commands, embeds, interactions |
 | bullmq         | ^5.34.x  | Redis-based job queue with scheduling, retries, concurrency   |
 | ioredis        | ^5.4.x   | Redis client (shared with existing CacheService)              |
-| @prisma/client | ^6.x     | Database ORM for guild configs and preferences                |
+| @prisma/client | ^7.x     | Database ORM for guild configs and preferences                |
 | zod            | ^3.x     | Runtime validation (already in @fantasy/types)                |
 
 ### Install Commands
@@ -20,6 +20,8 @@
 pnpm --filter discord-bot add bullmq
 # discord.js and ioredis already installed
 ```
+
+> **Prisma 7 Note**: This project uses Prisma 7 which requires both `prisma` and `@prisma/client` at version 7.x. The generator must use the new `prisma-client` provider (not the deprecated `prisma-client-js`), and the `output` field is now mandatory.
 
 ---
 
@@ -792,6 +794,12 @@ export class StateService {
 Add to `packages/database/prisma/schema.prisma`:
 
 ```prisma
+// Prisma 7 requires the new prisma-client provider with mandatory output
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/client"
+}
+
 // ============================================
 // DISCORD BOT CONFIGURATION
 // ============================================
