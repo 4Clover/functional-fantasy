@@ -8,7 +8,9 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User';
-export type * from './models/PlatformAccount';
+export type * from './models/Session';
+export type * from './models/Account';
+export type * from './models/Verification';
 export type * from './models/League';
 export type * from './models/LeagueMember';
 export type * from './models/Player';

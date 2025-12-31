@@ -22,10 +22,20 @@ export * from './enums';
  */
 export type User = Prisma.UserModel;
 /**
- * Model PlatformAccount
+ * Model Session
  *
  */
-export type PlatformAccount = Prisma.PlatformAccountModel;
+export type Session = Prisma.SessionModel;
+/**
+ * Model Account
+ *
+ */
+export type Account = Prisma.AccountModel;
+/**
+ * Model Verification
+ *
+ */
+export type Verification = Prisma.VerificationModel;
 /**
  * Model League
  *

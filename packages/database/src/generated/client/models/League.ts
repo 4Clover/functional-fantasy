@@ -566,6 +566,10 @@ export type LeagueScalarRelationFilter = {
   isNot?: Prisma.LeagueWhereInput;
 };
 
+export type EnumPlatformFieldUpdateOperationsInput = {
+  set?: $Enums.Platform;
+};
+
 export type IntFieldUpdateOperationsInput = {
   set?: number;
   increment?: number;
