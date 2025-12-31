@@ -23,6 +23,33 @@ export {
   type ESPNLeagueConfig,
 } from './espn/polling.js';
 
+// KTC (KeepTradeCut)
+export { KTCClient, ktcClient } from './ktc/client.js';
+export { CachedKTCClient } from './ktc/cached-client.js';
+export {
+  KTCPlayerValueSchema,
+  KTCScrapedDataSchema,
+  type KTCPlayerValue,
+  type KTCScrapedData,
+} from './ktc/schemas.js';
+
+// NFLverse Mapping
+export { NFLVerseMapper, nflverseMapper } from './mapping/nflverse-mapper.js';
+export { NFLVersePlayerMappingSchema, type NFLVersePlayerMapping } from './mapping/schemas.js';
+
+// Valuation
+export {
+  calculateAdjustedValue,
+  type LeagueContext,
+  type AdjustedValue,
+} from './valuation/adjustments.js';
+export {
+  calculateMarginalUtility,
+  type RosterPlayer,
+  type RosterContext,
+  type MarginalUtilityResult,
+} from './valuation/marginal-utility.js';
+
 // Shared
 export { CacheService } from './cache/redis.js';
 export { RateLimiter } from './utils/rate-limiter.js';

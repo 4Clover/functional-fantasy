@@ -305,6 +305,9 @@ export type PlayerWhereInput = {
   injuryStatus?: Prisma.StringNullableFilter<'Player'> | string | null;
   byeWeek?: Prisma.IntNullableFilter<'Player'> | number | null;
   rosterPlayers?: Prisma.RosterPlayerListRelationFilter;
+  valuations?: Prisma.PlayerValuationListRelationFilter;
+  weeklyStats?: Prisma.PlayerWeeklyStatsListRelationFilter;
+  seasonStats?: Prisma.PlayerSeasonStatsListRelationFilter;
 };
 
 export type PlayerOrderByWithRelationInput = {
@@ -325,6 +328,9 @@ export type PlayerOrderByWithRelationInput = {
   injuryStatus?: Prisma.SortOrderInput | Prisma.SortOrder;
   byeWeek?: Prisma.SortOrderInput | Prisma.SortOrder;
   rosterPlayers?: Prisma.RosterPlayerOrderByRelationAggregateInput;
+  valuations?: Prisma.PlayerValuationOrderByRelationAggregateInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsOrderByRelationAggregateInput;
+  seasonStats?: Prisma.PlayerSeasonStatsOrderByRelationAggregateInput;
 };
 
 export type PlayerWhereUniqueInput = Prisma.AtLeast<
@@ -349,6 +355,9 @@ export type PlayerWhereUniqueInput = Prisma.AtLeast<
     injuryStatus?: Prisma.StringNullableFilter<'Player'> | string | null;
     byeWeek?: Prisma.IntNullableFilter<'Player'> | number | null;
     rosterPlayers?: Prisma.RosterPlayerListRelationFilter;
+    valuations?: Prisma.PlayerValuationListRelationFilter;
+    weeklyStats?: Prisma.PlayerWeeklyStatsListRelationFilter;
+    seasonStats?: Prisma.PlayerSeasonStatsListRelationFilter;
   },
   'id' | 'nflverseId' | 'sleeperId' | 'yahooId' | 'espnId'
 >;
@@ -417,6 +426,9 @@ export type PlayerCreateInput = {
   injuryStatus?: string | null;
   byeWeek?: number | null;
   rosterPlayers?: Prisma.RosterPlayerCreateNestedManyWithoutPlayerInput;
+  valuations?: Prisma.PlayerValuationCreateNestedManyWithoutPlayerInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsCreateNestedManyWithoutPlayerInput;
+  seasonStats?: Prisma.PlayerSeasonStatsCreateNestedManyWithoutPlayerInput;
 };
 
 export type PlayerUncheckedCreateInput = {
@@ -437,6 +449,9 @@ export type PlayerUncheckedCreateInput = {
   injuryStatus?: string | null;
   byeWeek?: number | null;
   rosterPlayers?: Prisma.RosterPlayerUncheckedCreateNestedManyWithoutPlayerInput;
+  valuations?: Prisma.PlayerValuationUncheckedCreateNestedManyWithoutPlayerInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUncheckedCreateNestedManyWithoutPlayerInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUncheckedCreateNestedManyWithoutPlayerInput;
 };
 
 export type PlayerUpdateInput = {
@@ -457,6 +472,9 @@ export type PlayerUpdateInput = {
   injuryStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   byeWeek?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   rosterPlayers?: Prisma.RosterPlayerUpdateManyWithoutPlayerNestedInput;
+  valuations?: Prisma.PlayerValuationUpdateManyWithoutPlayerNestedInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUpdateManyWithoutPlayerNestedInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUpdateManyWithoutPlayerNestedInput;
 };
 
 export type PlayerUncheckedUpdateInput = {
@@ -477,6 +495,9 @@ export type PlayerUncheckedUpdateInput = {
   injuryStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   byeWeek?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
   rosterPlayers?: Prisma.RosterPlayerUncheckedUpdateManyWithoutPlayerNestedInput;
+  valuations?: Prisma.PlayerValuationUncheckedUpdateManyWithoutPlayerNestedInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUncheckedUpdateManyWithoutPlayerNestedInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUncheckedUpdateManyWithoutPlayerNestedInput;
 };
 
 export type PlayerCreateManyInput = {
@@ -650,6 +671,84 @@ export type PlayerUpdateOneRequiredWithoutRosterPlayersNestedInput = {
   >;
 };
 
+export type PlayerCreateNestedOneWithoutValuationsInput = {
+  create?: Prisma.XOR<
+    Prisma.PlayerCreateWithoutValuationsInput,
+    Prisma.PlayerUncheckedCreateWithoutValuationsInput
+  >;
+  connectOrCreate?: Prisma.PlayerCreateOrConnectWithoutValuationsInput;
+  connect?: Prisma.PlayerWhereUniqueInput;
+};
+
+export type PlayerUpdateOneRequiredWithoutValuationsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.PlayerCreateWithoutValuationsInput,
+    Prisma.PlayerUncheckedCreateWithoutValuationsInput
+  >;
+  connectOrCreate?: Prisma.PlayerCreateOrConnectWithoutValuationsInput;
+  upsert?: Prisma.PlayerUpsertWithoutValuationsInput;
+  connect?: Prisma.PlayerWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.PlayerUpdateToOneWithWhereWithoutValuationsInput,
+      Prisma.PlayerUpdateWithoutValuationsInput
+    >,
+    Prisma.PlayerUncheckedUpdateWithoutValuationsInput
+  >;
+};
+
+export type PlayerCreateNestedOneWithoutWeeklyStatsInput = {
+  create?: Prisma.XOR<
+    Prisma.PlayerCreateWithoutWeeklyStatsInput,
+    Prisma.PlayerUncheckedCreateWithoutWeeklyStatsInput
+  >;
+  connectOrCreate?: Prisma.PlayerCreateOrConnectWithoutWeeklyStatsInput;
+  connect?: Prisma.PlayerWhereUniqueInput;
+};
+
+export type PlayerUpdateOneRequiredWithoutWeeklyStatsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.PlayerCreateWithoutWeeklyStatsInput,
+    Prisma.PlayerUncheckedCreateWithoutWeeklyStatsInput
+  >;
+  connectOrCreate?: Prisma.PlayerCreateOrConnectWithoutWeeklyStatsInput;
+  upsert?: Prisma.PlayerUpsertWithoutWeeklyStatsInput;
+  connect?: Prisma.PlayerWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.PlayerUpdateToOneWithWhereWithoutWeeklyStatsInput,
+      Prisma.PlayerUpdateWithoutWeeklyStatsInput
+    >,
+    Prisma.PlayerUncheckedUpdateWithoutWeeklyStatsInput
+  >;
+};
+
+export type PlayerCreateNestedOneWithoutSeasonStatsInput = {
+  create?: Prisma.XOR<
+    Prisma.PlayerCreateWithoutSeasonStatsInput,
+    Prisma.PlayerUncheckedCreateWithoutSeasonStatsInput
+  >;
+  connectOrCreate?: Prisma.PlayerCreateOrConnectWithoutSeasonStatsInput;
+  connect?: Prisma.PlayerWhereUniqueInput;
+};
+
+export type PlayerUpdateOneRequiredWithoutSeasonStatsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.PlayerCreateWithoutSeasonStatsInput,
+    Prisma.PlayerUncheckedCreateWithoutSeasonStatsInput
+  >;
+  connectOrCreate?: Prisma.PlayerCreateOrConnectWithoutSeasonStatsInput;
+  upsert?: Prisma.PlayerUpsertWithoutSeasonStatsInput;
+  connect?: Prisma.PlayerWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.PlayerUpdateToOneWithWhereWithoutSeasonStatsInput,
+      Prisma.PlayerUpdateWithoutSeasonStatsInput
+    >,
+    Prisma.PlayerUncheckedUpdateWithoutSeasonStatsInput
+  >;
+};
+
 export type PlayerCreateWithoutRosterPlayersInput = {
   id?: string;
   createdAt?: Date | string;
@@ -667,6 +766,9 @@ export type PlayerCreateWithoutRosterPlayersInput = {
   status?: $Enums.PlayerStatus;
   injuryStatus?: string | null;
   byeWeek?: number | null;
+  valuations?: Prisma.PlayerValuationCreateNestedManyWithoutPlayerInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsCreateNestedManyWithoutPlayerInput;
+  seasonStats?: Prisma.PlayerSeasonStatsCreateNestedManyWithoutPlayerInput;
 };
 
 export type PlayerUncheckedCreateWithoutRosterPlayersInput = {
@@ -686,6 +788,9 @@ export type PlayerUncheckedCreateWithoutRosterPlayersInput = {
   status?: $Enums.PlayerStatus;
   injuryStatus?: string | null;
   byeWeek?: number | null;
+  valuations?: Prisma.PlayerValuationUncheckedCreateNestedManyWithoutPlayerInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUncheckedCreateNestedManyWithoutPlayerInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUncheckedCreateNestedManyWithoutPlayerInput;
 };
 
 export type PlayerCreateOrConnectWithoutRosterPlayersInput = {
@@ -733,6 +838,9 @@ export type PlayerUpdateWithoutRosterPlayersInput = {
   status?: Prisma.EnumPlayerStatusFieldUpdateOperationsInput | $Enums.PlayerStatus;
   injuryStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   byeWeek?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  valuations?: Prisma.PlayerValuationUpdateManyWithoutPlayerNestedInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUpdateManyWithoutPlayerNestedInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUpdateManyWithoutPlayerNestedInput;
 };
 
 export type PlayerUncheckedUpdateWithoutRosterPlayersInput = {
@@ -752,6 +860,357 @@ export type PlayerUncheckedUpdateWithoutRosterPlayersInput = {
   status?: Prisma.EnumPlayerStatusFieldUpdateOperationsInput | $Enums.PlayerStatus;
   injuryStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   byeWeek?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  valuations?: Prisma.PlayerValuationUncheckedUpdateManyWithoutPlayerNestedInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUncheckedUpdateManyWithoutPlayerNestedInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUncheckedUpdateManyWithoutPlayerNestedInput;
+};
+
+export type PlayerCreateWithoutValuationsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  nflverseId?: string | null;
+  sleeperId?: string | null;
+  yahooId?: string | null;
+  espnId?: string | null;
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  position: $Enums.Position;
+  team?: string | null;
+  jerseyNumber?: number | null;
+  status?: $Enums.PlayerStatus;
+  injuryStatus?: string | null;
+  byeWeek?: number | null;
+  rosterPlayers?: Prisma.RosterPlayerCreateNestedManyWithoutPlayerInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsCreateNestedManyWithoutPlayerInput;
+  seasonStats?: Prisma.PlayerSeasonStatsCreateNestedManyWithoutPlayerInput;
+};
+
+export type PlayerUncheckedCreateWithoutValuationsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  nflverseId?: string | null;
+  sleeperId?: string | null;
+  yahooId?: string | null;
+  espnId?: string | null;
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  position: $Enums.Position;
+  team?: string | null;
+  jerseyNumber?: number | null;
+  status?: $Enums.PlayerStatus;
+  injuryStatus?: string | null;
+  byeWeek?: number | null;
+  rosterPlayers?: Prisma.RosterPlayerUncheckedCreateNestedManyWithoutPlayerInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUncheckedCreateNestedManyWithoutPlayerInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUncheckedCreateNestedManyWithoutPlayerInput;
+};
+
+export type PlayerCreateOrConnectWithoutValuationsInput = {
+  where: Prisma.PlayerWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.PlayerCreateWithoutValuationsInput,
+    Prisma.PlayerUncheckedCreateWithoutValuationsInput
+  >;
+};
+
+export type PlayerUpsertWithoutValuationsInput = {
+  update: Prisma.XOR<
+    Prisma.PlayerUpdateWithoutValuationsInput,
+    Prisma.PlayerUncheckedUpdateWithoutValuationsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.PlayerCreateWithoutValuationsInput,
+    Prisma.PlayerUncheckedCreateWithoutValuationsInput
+  >;
+  where?: Prisma.PlayerWhereInput;
+};
+
+export type PlayerUpdateToOneWithWhereWithoutValuationsInput = {
+  where?: Prisma.PlayerWhereInput;
+  data: Prisma.XOR<
+    Prisma.PlayerUpdateWithoutValuationsInput,
+    Prisma.PlayerUncheckedUpdateWithoutValuationsInput
+  >;
+};
+
+export type PlayerUpdateWithoutValuationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  nflverseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sleeperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  yahooId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  espnId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string;
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string;
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string;
+  position?: Prisma.EnumPositionFieldUpdateOperationsInput | $Enums.Position;
+  team?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  jerseyNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  status?: Prisma.EnumPlayerStatusFieldUpdateOperationsInput | $Enums.PlayerStatus;
+  injuryStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  byeWeek?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  rosterPlayers?: Prisma.RosterPlayerUpdateManyWithoutPlayerNestedInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUpdateManyWithoutPlayerNestedInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUpdateManyWithoutPlayerNestedInput;
+};
+
+export type PlayerUncheckedUpdateWithoutValuationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  nflverseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sleeperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  yahooId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  espnId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string;
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string;
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string;
+  position?: Prisma.EnumPositionFieldUpdateOperationsInput | $Enums.Position;
+  team?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  jerseyNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  status?: Prisma.EnumPlayerStatusFieldUpdateOperationsInput | $Enums.PlayerStatus;
+  injuryStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  byeWeek?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  rosterPlayers?: Prisma.RosterPlayerUncheckedUpdateManyWithoutPlayerNestedInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUncheckedUpdateManyWithoutPlayerNestedInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUncheckedUpdateManyWithoutPlayerNestedInput;
+};
+
+export type PlayerCreateWithoutWeeklyStatsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  nflverseId?: string | null;
+  sleeperId?: string | null;
+  yahooId?: string | null;
+  espnId?: string | null;
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  position: $Enums.Position;
+  team?: string | null;
+  jerseyNumber?: number | null;
+  status?: $Enums.PlayerStatus;
+  injuryStatus?: string | null;
+  byeWeek?: number | null;
+  rosterPlayers?: Prisma.RosterPlayerCreateNestedManyWithoutPlayerInput;
+  valuations?: Prisma.PlayerValuationCreateNestedManyWithoutPlayerInput;
+  seasonStats?: Prisma.PlayerSeasonStatsCreateNestedManyWithoutPlayerInput;
+};
+
+export type PlayerUncheckedCreateWithoutWeeklyStatsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  nflverseId?: string | null;
+  sleeperId?: string | null;
+  yahooId?: string | null;
+  espnId?: string | null;
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  position: $Enums.Position;
+  team?: string | null;
+  jerseyNumber?: number | null;
+  status?: $Enums.PlayerStatus;
+  injuryStatus?: string | null;
+  byeWeek?: number | null;
+  rosterPlayers?: Prisma.RosterPlayerUncheckedCreateNestedManyWithoutPlayerInput;
+  valuations?: Prisma.PlayerValuationUncheckedCreateNestedManyWithoutPlayerInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUncheckedCreateNestedManyWithoutPlayerInput;
+};
+
+export type PlayerCreateOrConnectWithoutWeeklyStatsInput = {
+  where: Prisma.PlayerWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.PlayerCreateWithoutWeeklyStatsInput,
+    Prisma.PlayerUncheckedCreateWithoutWeeklyStatsInput
+  >;
+};
+
+export type PlayerUpsertWithoutWeeklyStatsInput = {
+  update: Prisma.XOR<
+    Prisma.PlayerUpdateWithoutWeeklyStatsInput,
+    Prisma.PlayerUncheckedUpdateWithoutWeeklyStatsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.PlayerCreateWithoutWeeklyStatsInput,
+    Prisma.PlayerUncheckedCreateWithoutWeeklyStatsInput
+  >;
+  where?: Prisma.PlayerWhereInput;
+};
+
+export type PlayerUpdateToOneWithWhereWithoutWeeklyStatsInput = {
+  where?: Prisma.PlayerWhereInput;
+  data: Prisma.XOR<
+    Prisma.PlayerUpdateWithoutWeeklyStatsInput,
+    Prisma.PlayerUncheckedUpdateWithoutWeeklyStatsInput
+  >;
+};
+
+export type PlayerUpdateWithoutWeeklyStatsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  nflverseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sleeperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  yahooId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  espnId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string;
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string;
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string;
+  position?: Prisma.EnumPositionFieldUpdateOperationsInput | $Enums.Position;
+  team?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  jerseyNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  status?: Prisma.EnumPlayerStatusFieldUpdateOperationsInput | $Enums.PlayerStatus;
+  injuryStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  byeWeek?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  rosterPlayers?: Prisma.RosterPlayerUpdateManyWithoutPlayerNestedInput;
+  valuations?: Prisma.PlayerValuationUpdateManyWithoutPlayerNestedInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUpdateManyWithoutPlayerNestedInput;
+};
+
+export type PlayerUncheckedUpdateWithoutWeeklyStatsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  nflverseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sleeperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  yahooId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  espnId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string;
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string;
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string;
+  position?: Prisma.EnumPositionFieldUpdateOperationsInput | $Enums.Position;
+  team?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  jerseyNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  status?: Prisma.EnumPlayerStatusFieldUpdateOperationsInput | $Enums.PlayerStatus;
+  injuryStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  byeWeek?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  rosterPlayers?: Prisma.RosterPlayerUncheckedUpdateManyWithoutPlayerNestedInput;
+  valuations?: Prisma.PlayerValuationUncheckedUpdateManyWithoutPlayerNestedInput;
+  seasonStats?: Prisma.PlayerSeasonStatsUncheckedUpdateManyWithoutPlayerNestedInput;
+};
+
+export type PlayerCreateWithoutSeasonStatsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  nflverseId?: string | null;
+  sleeperId?: string | null;
+  yahooId?: string | null;
+  espnId?: string | null;
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  position: $Enums.Position;
+  team?: string | null;
+  jerseyNumber?: number | null;
+  status?: $Enums.PlayerStatus;
+  injuryStatus?: string | null;
+  byeWeek?: number | null;
+  rosterPlayers?: Prisma.RosterPlayerCreateNestedManyWithoutPlayerInput;
+  valuations?: Prisma.PlayerValuationCreateNestedManyWithoutPlayerInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsCreateNestedManyWithoutPlayerInput;
+};
+
+export type PlayerUncheckedCreateWithoutSeasonStatsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  nflverseId?: string | null;
+  sleeperId?: string | null;
+  yahooId?: string | null;
+  espnId?: string | null;
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  position: $Enums.Position;
+  team?: string | null;
+  jerseyNumber?: number | null;
+  status?: $Enums.PlayerStatus;
+  injuryStatus?: string | null;
+  byeWeek?: number | null;
+  rosterPlayers?: Prisma.RosterPlayerUncheckedCreateNestedManyWithoutPlayerInput;
+  valuations?: Prisma.PlayerValuationUncheckedCreateNestedManyWithoutPlayerInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUncheckedCreateNestedManyWithoutPlayerInput;
+};
+
+export type PlayerCreateOrConnectWithoutSeasonStatsInput = {
+  where: Prisma.PlayerWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.PlayerCreateWithoutSeasonStatsInput,
+    Prisma.PlayerUncheckedCreateWithoutSeasonStatsInput
+  >;
+};
+
+export type PlayerUpsertWithoutSeasonStatsInput = {
+  update: Prisma.XOR<
+    Prisma.PlayerUpdateWithoutSeasonStatsInput,
+    Prisma.PlayerUncheckedUpdateWithoutSeasonStatsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.PlayerCreateWithoutSeasonStatsInput,
+    Prisma.PlayerUncheckedCreateWithoutSeasonStatsInput
+  >;
+  where?: Prisma.PlayerWhereInput;
+};
+
+export type PlayerUpdateToOneWithWhereWithoutSeasonStatsInput = {
+  where?: Prisma.PlayerWhereInput;
+  data: Prisma.XOR<
+    Prisma.PlayerUpdateWithoutSeasonStatsInput,
+    Prisma.PlayerUncheckedUpdateWithoutSeasonStatsInput
+  >;
+};
+
+export type PlayerUpdateWithoutSeasonStatsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  nflverseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sleeperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  yahooId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  espnId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string;
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string;
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string;
+  position?: Prisma.EnumPositionFieldUpdateOperationsInput | $Enums.Position;
+  team?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  jerseyNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  status?: Prisma.EnumPlayerStatusFieldUpdateOperationsInput | $Enums.PlayerStatus;
+  injuryStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  byeWeek?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  rosterPlayers?: Prisma.RosterPlayerUpdateManyWithoutPlayerNestedInput;
+  valuations?: Prisma.PlayerValuationUpdateManyWithoutPlayerNestedInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUpdateManyWithoutPlayerNestedInput;
+};
+
+export type PlayerUncheckedUpdateWithoutSeasonStatsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  nflverseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sleeperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  yahooId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  espnId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string;
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string;
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string;
+  position?: Prisma.EnumPositionFieldUpdateOperationsInput | $Enums.Position;
+  team?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  jerseyNumber?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  status?: Prisma.EnumPlayerStatusFieldUpdateOperationsInput | $Enums.PlayerStatus;
+  injuryStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  byeWeek?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  rosterPlayers?: Prisma.RosterPlayerUncheckedUpdateManyWithoutPlayerNestedInput;
+  valuations?: Prisma.PlayerValuationUncheckedUpdateManyWithoutPlayerNestedInput;
+  weeklyStats?: Prisma.PlayerWeeklyStatsUncheckedUpdateManyWithoutPlayerNestedInput;
 };
 
 /**
@@ -760,12 +1219,18 @@ export type PlayerUncheckedUpdateWithoutRosterPlayersInput = {
 
 export type PlayerCountOutputType = {
   rosterPlayers: number;
+  valuations: number;
+  weeklyStats: number;
+  seasonStats: number;
 };
 
 export type PlayerCountOutputTypeSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   rosterPlayers?: boolean | PlayerCountOutputTypeCountRosterPlayersArgs;
+  valuations?: boolean | PlayerCountOutputTypeCountValuationsArgs;
+  weeklyStats?: boolean | PlayerCountOutputTypeCountWeeklyStatsArgs;
+  seasonStats?: boolean | PlayerCountOutputTypeCountSeasonStatsArgs;
 };
 
 /**
@@ -789,6 +1254,33 @@ export type PlayerCountOutputTypeCountRosterPlayersArgs<
   where?: Prisma.RosterPlayerWhereInput;
 };
 
+/**
+ * PlayerCountOutputType without action
+ */
+export type PlayerCountOutputTypeCountValuationsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PlayerValuationWhereInput;
+};
+
+/**
+ * PlayerCountOutputType without action
+ */
+export type PlayerCountOutputTypeCountWeeklyStatsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PlayerWeeklyStatsWhereInput;
+};
+
+/**
+ * PlayerCountOutputType without action
+ */
+export type PlayerCountOutputTypeCountSeasonStatsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PlayerSeasonStatsWhereInput;
+};
+
 export type PlayerSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
@@ -810,6 +1302,9 @@ export type PlayerSelect<
     injuryStatus?: boolean;
     byeWeek?: boolean;
     rosterPlayers?: boolean | Prisma.Player$rosterPlayersArgs<ExtArgs>;
+    valuations?: boolean | Prisma.Player$valuationsArgs<ExtArgs>;
+    weeklyStats?: boolean | Prisma.Player$weeklyStatsArgs<ExtArgs>;
+    seasonStats?: boolean | Prisma.Player$seasonStatsArgs<ExtArgs>;
     _count?: boolean | Prisma.PlayerCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['player']
@@ -907,6 +1402,9 @@ export type PlayerInclude<
   ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   rosterPlayers?: boolean | Prisma.Player$rosterPlayersArgs<ExtArgs>;
+  valuations?: boolean | Prisma.Player$valuationsArgs<ExtArgs>;
+  weeklyStats?: boolean | Prisma.Player$weeklyStatsArgs<ExtArgs>;
+  seasonStats?: boolean | Prisma.Player$seasonStatsArgs<ExtArgs>;
   _count?: boolean | Prisma.PlayerCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type PlayerIncludeCreateManyAndReturn<
@@ -922,6 +1420,9 @@ export type $PlayerPayload<
   name: 'Player';
   objects: {
     rosterPlayers: Prisma.$RosterPlayerPayload<ExtArgs>[];
+    valuations: Prisma.$PlayerValuationPayload<ExtArgs>[];
+    weeklyStats: Prisma.$PlayerWeeklyStatsPayload<ExtArgs>[];
+    seasonStats: Prisma.$PlayerSeasonStatsPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1462,6 +1963,39 @@ export interface Prisma__PlayerClient<
       >
     | Null
   >;
+  valuations<T extends Prisma.Player$valuationsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Player$valuationsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PlayerValuationPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  weeklyStats<T extends Prisma.Player$weeklyStatsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Player$weeklyStatsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PlayerWeeklyStatsPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  seasonStats<T extends Prisma.Player$seasonStatsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Player$seasonStatsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PlayerSeasonStatsPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1949,6 +2483,90 @@ export type Player$rosterPlayersArgs<
   take?: number;
   skip?: number;
   distinct?: Prisma.RosterPlayerScalarFieldEnum | Prisma.RosterPlayerScalarFieldEnum[];
+};
+
+/**
+ * Player.valuations
+ */
+export type Player$valuationsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the PlayerValuation
+   */
+  select?: Prisma.PlayerValuationSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the PlayerValuation
+   */
+  omit?: Prisma.PlayerValuationOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlayerValuationInclude<ExtArgs> | null;
+  where?: Prisma.PlayerValuationWhereInput;
+  orderBy?:
+    | Prisma.PlayerValuationOrderByWithRelationInput
+    | Prisma.PlayerValuationOrderByWithRelationInput[];
+  cursor?: Prisma.PlayerValuationWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.PlayerValuationScalarFieldEnum | Prisma.PlayerValuationScalarFieldEnum[];
+};
+
+/**
+ * Player.weeklyStats
+ */
+export type Player$weeklyStatsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the PlayerWeeklyStats
+   */
+  select?: Prisma.PlayerWeeklyStatsSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the PlayerWeeklyStats
+   */
+  omit?: Prisma.PlayerWeeklyStatsOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlayerWeeklyStatsInclude<ExtArgs> | null;
+  where?: Prisma.PlayerWeeklyStatsWhereInput;
+  orderBy?:
+    | Prisma.PlayerWeeklyStatsOrderByWithRelationInput
+    | Prisma.PlayerWeeklyStatsOrderByWithRelationInput[];
+  cursor?: Prisma.PlayerWeeklyStatsWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.PlayerWeeklyStatsScalarFieldEnum | Prisma.PlayerWeeklyStatsScalarFieldEnum[];
+};
+
+/**
+ * Player.seasonStats
+ */
+export type Player$seasonStatsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the PlayerSeasonStats
+   */
+  select?: Prisma.PlayerSeasonStatsSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the PlayerSeasonStats
+   */
+  omit?: Prisma.PlayerSeasonStatsOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PlayerSeasonStatsInclude<ExtArgs> | null;
+  where?: Prisma.PlayerSeasonStatsWhereInput;
+  orderBy?:
+    | Prisma.PlayerSeasonStatsOrderByWithRelationInput
+    | Prisma.PlayerSeasonStatsOrderByWithRelationInput[];
+  cursor?: Prisma.PlayerSeasonStatsWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.PlayerSeasonStatsScalarFieldEnum | Prisma.PlayerSeasonStatsScalarFieldEnum[];
 };
 
 /**

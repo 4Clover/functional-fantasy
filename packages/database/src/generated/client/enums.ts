@@ -89,6 +89,43 @@ export const MatchupType = {
 
 export type MatchupType = (typeof MatchupType)[keyof typeof MatchupType];
 
+export const ValuationSource = {
+  KTC_DYNASTY: 'KTC_DYNASTY',
+  KTC_REDRAFT: 'KTC_REDRAFT',
+  DYNASTY_PROCESS: 'DYNASTY_PROCESS',
+} as const;
+
+export type ValuationSource = (typeof ValuationSource)[keyof typeof ValuationSource];
+
+export const ValueTrend = {
+  RISING: 'RISING',
+  STABLE: 'STABLE',
+  FALLING: 'FALLING',
+} as const;
+
+export type ValueTrend = (typeof ValueTrend)[keyof typeof ValueTrend];
+
+export const BaselineType = {
+  STRICT: 'STRICT',
+  WAIVER: 'WAIVER',
+} as const;
+
+export type BaselineType = (typeof BaselineType)[keyof typeof BaselineType];
+
+export const SuperlativeType = {
+  BEST_MANAGER: 'BEST_MANAGER',
+  WORST_MANAGER: 'WORST_MANAGER',
+  LUCKIEST_TEAM: 'LUCKIEST_TEAM',
+  UNLUCKIEST_TEAM: 'UNLUCKIEST_TEAM',
+  MOST_CONSISTENT: 'MOST_CONSISTENT',
+  BOOM_BUST: 'BOOM_BUST',
+  HIGHEST_SCORER: 'HIGHEST_SCORER',
+  WEEKLY_MVP: 'WEEKLY_MVP',
+  WEEKLY_LVP: 'WEEKLY_LVP',
+} as const;
+
+export type SuperlativeType = (typeof SuperlativeType)[keyof typeof SuperlativeType];
+
 export const TransactionType = {
   TRADE: 'TRADE',
   WAIVER: 'WAIVER',

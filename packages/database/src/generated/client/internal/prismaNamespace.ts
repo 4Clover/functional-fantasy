@@ -386,6 +386,15 @@ export const ModelName = {
   Transaction: 'Transaction',
   TransactionAdd: 'TransactionAdd',
   TransactionDrop: 'TransactionDrop',
+  PlayerValuation: 'PlayerValuation',
+  ValuationHistory: 'ValuationHistory',
+  LeagueSettings: 'LeagueSettings',
+  PlayerWeeklyStats: 'PlayerWeeklyStats',
+  PlayerSeasonStats: 'PlayerSeasonStats',
+  PositionBaseline: 'PositionBaseline',
+  TeamWeeklyAnalytics: 'TeamWeeklyAnalytics',
+  TeamSeasonAnalytics: 'TeamSeasonAnalytics',
+  LeagueSuperlative: 'LeagueSuperlative',
   GuildConfig: 'GuildConfig',
   UserNotificationPreference: 'UserNotificationPreference',
 } as const;
@@ -419,6 +428,15 @@ export type TypeMap<
       | 'transaction'
       | 'transactionAdd'
       | 'transactionDrop'
+      | 'playerValuation'
+      | 'valuationHistory'
+      | 'leagueSettings'
+      | 'playerWeeklyStats'
+      | 'playerSeasonStats'
+      | 'positionBaseline'
+      | 'teamWeeklyAnalytics'
+      | 'teamSeasonAnalytics'
+      | 'leagueSuperlative'
       | 'guildConfig'
       | 'userNotificationPreference';
     txIsolationLevel: TransactionIsolationLevel;
@@ -1248,6 +1266,690 @@ export type TypeMap<
         };
       };
     };
+    PlayerValuation: {
+      payload: Prisma.$PlayerValuationPayload<ExtArgs>;
+      fields: Prisma.PlayerValuationFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.PlayerValuationFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.PlayerValuationFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload>;
+        };
+        findFirst: {
+          args: Prisma.PlayerValuationFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.PlayerValuationFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload>;
+        };
+        findMany: {
+          args: Prisma.PlayerValuationFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload>[];
+        };
+        create: {
+          args: Prisma.PlayerValuationCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload>;
+        };
+        createMany: {
+          args: Prisma.PlayerValuationCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.PlayerValuationCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload>[];
+        };
+        delete: {
+          args: Prisma.PlayerValuationDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload>;
+        };
+        update: {
+          args: Prisma.PlayerValuationUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload>;
+        };
+        deleteMany: {
+          args: Prisma.PlayerValuationDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.PlayerValuationUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.PlayerValuationUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload>[];
+        };
+        upsert: {
+          args: Prisma.PlayerValuationUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerValuationPayload>;
+        };
+        aggregate: {
+          args: Prisma.PlayerValuationAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlayerValuation>;
+        };
+        groupBy: {
+          args: Prisma.PlayerValuationGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.PlayerValuationGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.PlayerValuationCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.PlayerValuationCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    ValuationHistory: {
+      payload: Prisma.$ValuationHistoryPayload<ExtArgs>;
+      fields: Prisma.ValuationHistoryFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ValuationHistoryFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ValuationHistoryFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload>;
+        };
+        findFirst: {
+          args: Prisma.ValuationHistoryFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ValuationHistoryFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload>;
+        };
+        findMany: {
+          args: Prisma.ValuationHistoryFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload>[];
+        };
+        create: {
+          args: Prisma.ValuationHistoryCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload>;
+        };
+        createMany: {
+          args: Prisma.ValuationHistoryCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ValuationHistoryCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload>[];
+        };
+        delete: {
+          args: Prisma.ValuationHistoryDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload>;
+        };
+        update: {
+          args: Prisma.ValuationHistoryUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload>;
+        };
+        deleteMany: {
+          args: Prisma.ValuationHistoryDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ValuationHistoryUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ValuationHistoryUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload>[];
+        };
+        upsert: {
+          args: Prisma.ValuationHistoryUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ValuationHistoryPayload>;
+        };
+        aggregate: {
+          args: Prisma.ValuationHistoryAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateValuationHistory>;
+        };
+        groupBy: {
+          args: Prisma.ValuationHistoryGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ValuationHistoryGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ValuationHistoryCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ValuationHistoryCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    LeagueSettings: {
+      payload: Prisma.$LeagueSettingsPayload<ExtArgs>;
+      fields: Prisma.LeagueSettingsFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.LeagueSettingsFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.LeagueSettingsFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload>;
+        };
+        findFirst: {
+          args: Prisma.LeagueSettingsFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.LeagueSettingsFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload>;
+        };
+        findMany: {
+          args: Prisma.LeagueSettingsFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload>[];
+        };
+        create: {
+          args: Prisma.LeagueSettingsCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload>;
+        };
+        createMany: {
+          args: Prisma.LeagueSettingsCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.LeagueSettingsCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload>[];
+        };
+        delete: {
+          args: Prisma.LeagueSettingsDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload>;
+        };
+        update: {
+          args: Prisma.LeagueSettingsUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload>;
+        };
+        deleteMany: {
+          args: Prisma.LeagueSettingsDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.LeagueSettingsUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.LeagueSettingsUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload>[];
+        };
+        upsert: {
+          args: Prisma.LeagueSettingsUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSettingsPayload>;
+        };
+        aggregate: {
+          args: Prisma.LeagueSettingsAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLeagueSettings>;
+        };
+        groupBy: {
+          args: Prisma.LeagueSettingsGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.LeagueSettingsGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.LeagueSettingsCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.LeagueSettingsCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    PlayerWeeklyStats: {
+      payload: Prisma.$PlayerWeeklyStatsPayload<ExtArgs>;
+      fields: Prisma.PlayerWeeklyStatsFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.PlayerWeeklyStatsFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.PlayerWeeklyStatsFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload>;
+        };
+        findFirst: {
+          args: Prisma.PlayerWeeklyStatsFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.PlayerWeeklyStatsFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload>;
+        };
+        findMany: {
+          args: Prisma.PlayerWeeklyStatsFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload>[];
+        };
+        create: {
+          args: Prisma.PlayerWeeklyStatsCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload>;
+        };
+        createMany: {
+          args: Prisma.PlayerWeeklyStatsCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.PlayerWeeklyStatsCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload>[];
+        };
+        delete: {
+          args: Prisma.PlayerWeeklyStatsDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload>;
+        };
+        update: {
+          args: Prisma.PlayerWeeklyStatsUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload>;
+        };
+        deleteMany: {
+          args: Prisma.PlayerWeeklyStatsDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.PlayerWeeklyStatsUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.PlayerWeeklyStatsUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload>[];
+        };
+        upsert: {
+          args: Prisma.PlayerWeeklyStatsUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerWeeklyStatsPayload>;
+        };
+        aggregate: {
+          args: Prisma.PlayerWeeklyStatsAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlayerWeeklyStats>;
+        };
+        groupBy: {
+          args: Prisma.PlayerWeeklyStatsGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.PlayerWeeklyStatsGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.PlayerWeeklyStatsCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.PlayerWeeklyStatsCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    PlayerSeasonStats: {
+      payload: Prisma.$PlayerSeasonStatsPayload<ExtArgs>;
+      fields: Prisma.PlayerSeasonStatsFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.PlayerSeasonStatsFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.PlayerSeasonStatsFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload>;
+        };
+        findFirst: {
+          args: Prisma.PlayerSeasonStatsFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.PlayerSeasonStatsFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload>;
+        };
+        findMany: {
+          args: Prisma.PlayerSeasonStatsFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload>[];
+        };
+        create: {
+          args: Prisma.PlayerSeasonStatsCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload>;
+        };
+        createMany: {
+          args: Prisma.PlayerSeasonStatsCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.PlayerSeasonStatsCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload>[];
+        };
+        delete: {
+          args: Prisma.PlayerSeasonStatsDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload>;
+        };
+        update: {
+          args: Prisma.PlayerSeasonStatsUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload>;
+        };
+        deleteMany: {
+          args: Prisma.PlayerSeasonStatsDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.PlayerSeasonStatsUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.PlayerSeasonStatsUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload>[];
+        };
+        upsert: {
+          args: Prisma.PlayerSeasonStatsUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlayerSeasonStatsPayload>;
+        };
+        aggregate: {
+          args: Prisma.PlayerSeasonStatsAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlayerSeasonStats>;
+        };
+        groupBy: {
+          args: Prisma.PlayerSeasonStatsGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.PlayerSeasonStatsGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.PlayerSeasonStatsCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.PlayerSeasonStatsCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    PositionBaseline: {
+      payload: Prisma.$PositionBaselinePayload<ExtArgs>;
+      fields: Prisma.PositionBaselineFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.PositionBaselineFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.PositionBaselineFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload>;
+        };
+        findFirst: {
+          args: Prisma.PositionBaselineFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.PositionBaselineFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload>;
+        };
+        findMany: {
+          args: Prisma.PositionBaselineFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload>[];
+        };
+        create: {
+          args: Prisma.PositionBaselineCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload>;
+        };
+        createMany: {
+          args: Prisma.PositionBaselineCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.PositionBaselineCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload>[];
+        };
+        delete: {
+          args: Prisma.PositionBaselineDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload>;
+        };
+        update: {
+          args: Prisma.PositionBaselineUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload>;
+        };
+        deleteMany: {
+          args: Prisma.PositionBaselineDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.PositionBaselineUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.PositionBaselineUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload>[];
+        };
+        upsert: {
+          args: Prisma.PositionBaselineUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PositionBaselinePayload>;
+        };
+        aggregate: {
+          args: Prisma.PositionBaselineAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePositionBaseline>;
+        };
+        groupBy: {
+          args: Prisma.PositionBaselineGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.PositionBaselineGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.PositionBaselineCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.PositionBaselineCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    TeamWeeklyAnalytics: {
+      payload: Prisma.$TeamWeeklyAnalyticsPayload<ExtArgs>;
+      fields: Prisma.TeamWeeklyAnalyticsFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.TeamWeeklyAnalyticsFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.TeamWeeklyAnalyticsFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload>;
+        };
+        findFirst: {
+          args: Prisma.TeamWeeklyAnalyticsFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.TeamWeeklyAnalyticsFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload>;
+        };
+        findMany: {
+          args: Prisma.TeamWeeklyAnalyticsFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload>[];
+        };
+        create: {
+          args: Prisma.TeamWeeklyAnalyticsCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload>;
+        };
+        createMany: {
+          args: Prisma.TeamWeeklyAnalyticsCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.TeamWeeklyAnalyticsCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload>[];
+        };
+        delete: {
+          args: Prisma.TeamWeeklyAnalyticsDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload>;
+        };
+        update: {
+          args: Prisma.TeamWeeklyAnalyticsUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload>;
+        };
+        deleteMany: {
+          args: Prisma.TeamWeeklyAnalyticsDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.TeamWeeklyAnalyticsUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.TeamWeeklyAnalyticsUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload>[];
+        };
+        upsert: {
+          args: Prisma.TeamWeeklyAnalyticsUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamWeeklyAnalyticsPayload>;
+        };
+        aggregate: {
+          args: Prisma.TeamWeeklyAnalyticsAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTeamWeeklyAnalytics>;
+        };
+        groupBy: {
+          args: Prisma.TeamWeeklyAnalyticsGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.TeamWeeklyAnalyticsGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.TeamWeeklyAnalyticsCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.TeamWeeklyAnalyticsCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    TeamSeasonAnalytics: {
+      payload: Prisma.$TeamSeasonAnalyticsPayload<ExtArgs>;
+      fields: Prisma.TeamSeasonAnalyticsFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.TeamSeasonAnalyticsFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.TeamSeasonAnalyticsFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload>;
+        };
+        findFirst: {
+          args: Prisma.TeamSeasonAnalyticsFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.TeamSeasonAnalyticsFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload>;
+        };
+        findMany: {
+          args: Prisma.TeamSeasonAnalyticsFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload>[];
+        };
+        create: {
+          args: Prisma.TeamSeasonAnalyticsCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload>;
+        };
+        createMany: {
+          args: Prisma.TeamSeasonAnalyticsCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.TeamSeasonAnalyticsCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload>[];
+        };
+        delete: {
+          args: Prisma.TeamSeasonAnalyticsDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload>;
+        };
+        update: {
+          args: Prisma.TeamSeasonAnalyticsUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload>;
+        };
+        deleteMany: {
+          args: Prisma.TeamSeasonAnalyticsDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.TeamSeasonAnalyticsUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.TeamSeasonAnalyticsUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload>[];
+        };
+        upsert: {
+          args: Prisma.TeamSeasonAnalyticsUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamSeasonAnalyticsPayload>;
+        };
+        aggregate: {
+          args: Prisma.TeamSeasonAnalyticsAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTeamSeasonAnalytics>;
+        };
+        groupBy: {
+          args: Prisma.TeamSeasonAnalyticsGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.TeamSeasonAnalyticsGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.TeamSeasonAnalyticsCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.TeamSeasonAnalyticsCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    LeagueSuperlative: {
+      payload: Prisma.$LeagueSuperlativePayload<ExtArgs>;
+      fields: Prisma.LeagueSuperlativeFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.LeagueSuperlativeFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.LeagueSuperlativeFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload>;
+        };
+        findFirst: {
+          args: Prisma.LeagueSuperlativeFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.LeagueSuperlativeFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload>;
+        };
+        findMany: {
+          args: Prisma.LeagueSuperlativeFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload>[];
+        };
+        create: {
+          args: Prisma.LeagueSuperlativeCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload>;
+        };
+        createMany: {
+          args: Prisma.LeagueSuperlativeCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.LeagueSuperlativeCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload>[];
+        };
+        delete: {
+          args: Prisma.LeagueSuperlativeDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload>;
+        };
+        update: {
+          args: Prisma.LeagueSuperlativeUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload>;
+        };
+        deleteMany: {
+          args: Prisma.LeagueSuperlativeDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.LeagueSuperlativeUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.LeagueSuperlativeUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload>[];
+        };
+        upsert: {
+          args: Prisma.LeagueSuperlativeUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeagueSuperlativePayload>;
+        };
+        aggregate: {
+          args: Prisma.LeagueSuperlativeAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLeagueSuperlative>;
+        };
+        groupBy: {
+          args: Prisma.LeagueSuperlativeGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.LeagueSuperlativeGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.LeagueSuperlativeCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.LeagueSuperlativeCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     GuildConfig: {
       payload: Prisma.$GuildConfigPayload<ExtArgs>;
       fields: Prisma.GuildConfigFieldRefs;
@@ -1600,6 +2302,155 @@ export const TransactionDropScalarFieldEnum = {
 export type TransactionDropScalarFieldEnum =
   (typeof TransactionDropScalarFieldEnum)[keyof typeof TransactionDropScalarFieldEnum];
 
+export const PlayerValuationScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  playerId: 'playerId',
+  source: 'source',
+  scrapedAt: 'scrapedAt',
+  baseValue: 'baseValue',
+  tier: 'tier',
+  trend: 'trend',
+  weeklyDelta: 'weeklyDelta',
+} as const;
+
+export type PlayerValuationScalarFieldEnum =
+  (typeof PlayerValuationScalarFieldEnum)[keyof typeof PlayerValuationScalarFieldEnum];
+
+export const ValuationHistoryScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  playerId: 'playerId',
+  source: 'source',
+  value: 'value',
+  recordedAt: 'recordedAt',
+} as const;
+
+export type ValuationHistoryScalarFieldEnum =
+  (typeof ValuationHistoryScalarFieldEnum)[keyof typeof ValuationHistoryScalarFieldEnum];
+
+export const LeagueSettingsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  leagueId: 'leagueId',
+  isSuperFlex: 'isSuperFlex',
+  tePremium: 'tePremium',
+  pprValue: 'pprValue',
+  rosterSize: 'rosterSize',
+  benchSpots: 'benchSpots',
+  startingSlots: 'startingSlots',
+} as const;
+
+export type LeagueSettingsScalarFieldEnum =
+  (typeof LeagueSettingsScalarFieldEnum)[keyof typeof LeagueSettingsScalarFieldEnum];
+
+export const PlayerWeeklyStatsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  playerId: 'playerId',
+  season: 'season',
+  week: 'week',
+  points: 'points',
+  projected: 'projected',
+} as const;
+
+export type PlayerWeeklyStatsScalarFieldEnum =
+  (typeof PlayerWeeklyStatsScalarFieldEnum)[keyof typeof PlayerWeeklyStatsScalarFieldEnum];
+
+export const PlayerSeasonStatsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  playerId: 'playerId',
+  season: 'season',
+  totalPoints: 'totalPoints',
+  gamesPlayed: 'gamesPlayed',
+  avgPoints: 'avgPoints',
+  stdDeviation: 'stdDeviation',
+  vorpStrict: 'vorpStrict',
+  vorpWaiver: 'vorpWaiver',
+  war: 'war',
+} as const;
+
+export type PlayerSeasonStatsScalarFieldEnum =
+  (typeof PlayerSeasonStatsScalarFieldEnum)[keyof typeof PlayerSeasonStatsScalarFieldEnum];
+
+export const PositionBaselineScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  season: 'season',
+  position: 'position',
+  baselineType: 'baselineType',
+  teamCount: 'teamCount',
+  baselineRank: 'baselineRank',
+  baselineValue: 'baselineValue',
+} as const;
+
+export type PositionBaselineScalarFieldEnum =
+  (typeof PositionBaselineScalarFieldEnum)[keyof typeof PositionBaselineScalarFieldEnum];
+
+export const TeamWeeklyAnalyticsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  leagueId: 'leagueId',
+  memberId: 'memberId',
+  season: 'season',
+  week: 'week',
+  actualScore: 'actualScore',
+  optimalScore: 'optimalScore',
+  lineupEfficiency: 'lineupEfficiency',
+  allPlayWins: 'allPlayWins',
+  allPlayLosses: 'allPlayLosses',
+  allPlayTies: 'allPlayTies',
+  weeklyRank: 'weeklyRank',
+} as const;
+
+export type TeamWeeklyAnalyticsScalarFieldEnum =
+  (typeof TeamWeeklyAnalyticsScalarFieldEnum)[keyof typeof TeamWeeklyAnalyticsScalarFieldEnum];
+
+export const TeamSeasonAnalyticsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  leagueId: 'leagueId',
+  memberId: 'memberId',
+  season: 'season',
+  totalActualScore: 'totalActualScore',
+  totalOptimalScore: 'totalOptimalScore',
+  avgLineupEfficiency: 'avgLineupEfficiency',
+  allPlayWins: 'allPlayWins',
+  allPlayLosses: 'allPlayLosses',
+  allPlayTies: 'allPlayTies',
+  allPlayWinPct: 'allPlayWinPct',
+  expectedWins: 'expectedWins',
+  actualWins: 'actualWins',
+  luckIndex: 'luckIndex',
+  pointsStdDev: 'pointsStdDev',
+} as const;
+
+export type TeamSeasonAnalyticsScalarFieldEnum =
+  (typeof TeamSeasonAnalyticsScalarFieldEnum)[keyof typeof TeamSeasonAnalyticsScalarFieldEnum];
+
+export const LeagueSuperlativeScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  leagueId: 'leagueId',
+  season: 'season',
+  week: 'week',
+  superlativeType: 'superlativeType',
+  memberId: 'memberId',
+  value: 'value',
+  metadata: 'metadata',
+} as const;
+
+export type LeagueSuperlativeScalarFieldEnum =
+  (typeof LeagueSuperlativeScalarFieldEnum)[keyof typeof LeagueSuperlativeScalarFieldEnum];
+
 export const GuildConfigScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
@@ -1649,6 +2500,12 @@ export const NullableJsonNullValueInput = {
 
 export type NullableJsonNullValueInput =
   (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput];
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull,
+} as const;
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput];
 
 export const QueryMode = {
   default: 'default',
@@ -1870,6 +2727,70 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>;
 
 /**
+ * Reference to a field of type 'ValuationSource'
+ */
+export type EnumValuationSourceFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'ValuationSource'
+>;
+
+/**
+ * Reference to a field of type 'ValuationSource[]'
+ */
+export type ListEnumValuationSourceFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'ValuationSource[]'
+>;
+
+/**
+ * Reference to a field of type 'ValueTrend'
+ */
+export type EnumValueTrendFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'ValueTrend'
+>;
+
+/**
+ * Reference to a field of type 'ValueTrend[]'
+ */
+export type ListEnumValueTrendFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'ValueTrend[]'
+>;
+
+/**
+ * Reference to a field of type 'BaselineType'
+ */
+export type EnumBaselineTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'BaselineType'
+>;
+
+/**
+ * Reference to a field of type 'BaselineType[]'
+ */
+export type ListEnumBaselineTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'BaselineType[]'
+>;
+
+/**
+ * Reference to a field of type 'SuperlativeType'
+ */
+export type EnumSuperlativeTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'SuperlativeType'
+>;
+
+/**
+ * Reference to a field of type 'SuperlativeType[]'
+ */
+export type ListEnumSuperlativeTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'SuperlativeType[]'
+>;
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>;
@@ -1993,6 +2914,15 @@ export type GlobalOmitConfig = {
   transaction?: Prisma.TransactionOmit;
   transactionAdd?: Prisma.TransactionAddOmit;
   transactionDrop?: Prisma.TransactionDropOmit;
+  playerValuation?: Prisma.PlayerValuationOmit;
+  valuationHistory?: Prisma.ValuationHistoryOmit;
+  leagueSettings?: Prisma.LeagueSettingsOmit;
+  playerWeeklyStats?: Prisma.PlayerWeeklyStatsOmit;
+  playerSeasonStats?: Prisma.PlayerSeasonStatsOmit;
+  positionBaseline?: Prisma.PositionBaselineOmit;
+  teamWeeklyAnalytics?: Prisma.TeamWeeklyAnalyticsOmit;
+  teamSeasonAnalytics?: Prisma.TeamSeasonAnalyticsOmit;
+  leagueSuperlative?: Prisma.LeagueSuperlativeOmit;
   guildConfig?: Prisma.GuildConfigOmit;
   userNotificationPreference?: Prisma.UserNotificationPreferenceOmit;
 };

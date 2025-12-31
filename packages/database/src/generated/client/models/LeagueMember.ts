@@ -297,6 +297,12 @@ export type LeagueMemberWhereInput = {
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
   league?: Prisma.XOR<Prisma.LeagueScalarRelationFilter, Prisma.LeagueWhereInput>;
   rosters?: Prisma.RosterListRelationFilter;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsListRelationFilter;
+  seasonAnalytics?: Prisma.XOR<
+    Prisma.TeamSeasonAnalyticsNullableScalarRelationFilter,
+    Prisma.TeamSeasonAnalyticsWhereInput
+  > | null;
+  superlatives?: Prisma.LeagueSuperlativeListRelationFilter;
 };
 
 export type LeagueMemberOrderByWithRelationInput = {
@@ -314,6 +320,9 @@ export type LeagueMemberOrderByWithRelationInput = {
   user?: Prisma.UserOrderByWithRelationInput;
   league?: Prisma.LeagueOrderByWithRelationInput;
   rosters?: Prisma.RosterOrderByRelationAggregateInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsOrderByRelationAggregateInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsOrderByWithRelationInput;
+  superlatives?: Prisma.LeagueSuperlativeOrderByRelationAggregateInput;
 };
 
 export type LeagueMemberWhereUniqueInput = Prisma.AtLeast<
@@ -347,6 +356,12 @@ export type LeagueMemberWhereUniqueInput = Prisma.AtLeast<
     user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     league?: Prisma.XOR<Prisma.LeagueScalarRelationFilter, Prisma.LeagueWhereInput>;
     rosters?: Prisma.RosterListRelationFilter;
+    weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsListRelationFilter;
+    seasonAnalytics?: Prisma.XOR<
+      Prisma.TeamSeasonAnalyticsNullableScalarRelationFilter,
+      Prisma.TeamSeasonAnalyticsWhereInput
+    > | null;
+    superlatives?: Prisma.LeagueSuperlativeListRelationFilter;
   },
   'id' | 'leagueId_rosterSlot' | 'leagueId_userId'
 >;
@@ -414,6 +429,9 @@ export type LeagueMemberCreateInput = {
   user: Prisma.UserCreateNestedOneWithoutLeagueMembershipsInput;
   league: Prisma.LeagueCreateNestedOneWithoutMembersInput;
   rosters?: Prisma.RosterCreateNestedManyWithoutMemberInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedOneWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutMemberInput;
 };
 
 export type LeagueMemberUncheckedCreateInput = {
@@ -429,6 +447,9 @@ export type LeagueMemberUncheckedCreateInput = {
   pointsFor?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutMemberInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedOneWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutMemberInput;
 };
 
 export type LeagueMemberUpdateInput = {
@@ -454,6 +475,9 @@ export type LeagueMemberUpdateInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutLeagueMembershipsNestedInput;
   league?: Prisma.LeagueUpdateOneRequiredWithoutMembersNestedInput;
   rosters?: Prisma.RosterUpdateManyWithoutMemberNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateOneWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutMemberNestedInput;
 };
 
 export type LeagueMemberUncheckedUpdateInput = {
@@ -479,6 +503,9 @@ export type LeagueMemberUncheckedUpdateInput = {
     | number
     | string;
   rosters?: Prisma.RosterUncheckedUpdateManyWithoutMemberNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateOneWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutMemberNestedInput;
 };
 
 export type LeagueMemberCreateManyInput = {
@@ -832,6 +859,84 @@ export type LeagueMemberUpdateOneRequiredWithoutRostersNestedInput = {
   >;
 };
 
+export type LeagueMemberCreateNestedOneWithoutWeeklyAnalyticsInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutWeeklyAnalyticsInput
+  >;
+  connectOrCreate?: Prisma.LeagueMemberCreateOrConnectWithoutWeeklyAnalyticsInput;
+  connect?: Prisma.LeagueMemberWhereUniqueInput;
+};
+
+export type LeagueMemberUpdateOneRequiredWithoutWeeklyAnalyticsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutWeeklyAnalyticsInput
+  >;
+  connectOrCreate?: Prisma.LeagueMemberCreateOrConnectWithoutWeeklyAnalyticsInput;
+  upsert?: Prisma.LeagueMemberUpsertWithoutWeeklyAnalyticsInput;
+  connect?: Prisma.LeagueMemberWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.LeagueMemberUpdateToOneWithWhereWithoutWeeklyAnalyticsInput,
+      Prisma.LeagueMemberUpdateWithoutWeeklyAnalyticsInput
+    >,
+    Prisma.LeagueMemberUncheckedUpdateWithoutWeeklyAnalyticsInput
+  >;
+};
+
+export type LeagueMemberCreateNestedOneWithoutSeasonAnalyticsInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutSeasonAnalyticsInput
+  >;
+  connectOrCreate?: Prisma.LeagueMemberCreateOrConnectWithoutSeasonAnalyticsInput;
+  connect?: Prisma.LeagueMemberWhereUniqueInput;
+};
+
+export type LeagueMemberUpdateOneRequiredWithoutSeasonAnalyticsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutSeasonAnalyticsInput
+  >;
+  connectOrCreate?: Prisma.LeagueMemberCreateOrConnectWithoutSeasonAnalyticsInput;
+  upsert?: Prisma.LeagueMemberUpsertWithoutSeasonAnalyticsInput;
+  connect?: Prisma.LeagueMemberWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.LeagueMemberUpdateToOneWithWhereWithoutSeasonAnalyticsInput,
+      Prisma.LeagueMemberUpdateWithoutSeasonAnalyticsInput
+    >,
+    Prisma.LeagueMemberUncheckedUpdateWithoutSeasonAnalyticsInput
+  >;
+};
+
+export type LeagueMemberCreateNestedOneWithoutSuperlativesInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutSuperlativesInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutSuperlativesInput
+  >;
+  connectOrCreate?: Prisma.LeagueMemberCreateOrConnectWithoutSuperlativesInput;
+  connect?: Prisma.LeagueMemberWhereUniqueInput;
+};
+
+export type LeagueMemberUpdateOneRequiredWithoutSuperlativesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutSuperlativesInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutSuperlativesInput
+  >;
+  connectOrCreate?: Prisma.LeagueMemberCreateOrConnectWithoutSuperlativesInput;
+  upsert?: Prisma.LeagueMemberUpsertWithoutSuperlativesInput;
+  connect?: Prisma.LeagueMemberWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.LeagueMemberUpdateToOneWithWhereWithoutSuperlativesInput,
+      Prisma.LeagueMemberUpdateWithoutSuperlativesInput
+    >,
+    Prisma.LeagueMemberUncheckedUpdateWithoutSuperlativesInput
+  >;
+};
+
 export type LeagueMemberCreateWithoutUserInput = {
   id?: string;
   teamName?: string | null;
@@ -844,6 +949,9 @@ export type LeagueMemberCreateWithoutUserInput = {
   pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   league: Prisma.LeagueCreateNestedOneWithoutMembersInput;
   rosters?: Prisma.RosterCreateNestedManyWithoutMemberInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedOneWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutMemberInput;
 };
 
 export type LeagueMemberUncheckedCreateWithoutUserInput = {
@@ -858,6 +966,9 @@ export type LeagueMemberUncheckedCreateWithoutUserInput = {
   pointsFor?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutMemberInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedOneWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutMemberInput;
 };
 
 export type LeagueMemberCreateOrConnectWithoutUserInput = {
@@ -940,6 +1051,9 @@ export type LeagueMemberCreateWithoutLeagueInput = {
   pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   user: Prisma.UserCreateNestedOneWithoutLeagueMembershipsInput;
   rosters?: Prisma.RosterCreateNestedManyWithoutMemberInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedOneWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutMemberInput;
 };
 
 export type LeagueMemberUncheckedCreateWithoutLeagueInput = {
@@ -954,6 +1068,9 @@ export type LeagueMemberUncheckedCreateWithoutLeagueInput = {
   pointsFor?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutMemberInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedOneWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutMemberInput;
 };
 
 export type LeagueMemberCreateOrConnectWithoutLeagueInput = {
@@ -1009,6 +1126,9 @@ export type LeagueMemberCreateWithoutRostersInput = {
   pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   user: Prisma.UserCreateNestedOneWithoutLeagueMembershipsInput;
   league: Prisma.LeagueCreateNestedOneWithoutMembersInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedOneWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutMemberInput;
 };
 
 export type LeagueMemberUncheckedCreateWithoutRostersInput = {
@@ -1023,6 +1143,9 @@ export type LeagueMemberUncheckedCreateWithoutRostersInput = {
   ties?: number;
   pointsFor?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedOneWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutMemberInput;
 };
 
 export type LeagueMemberCreateOrConnectWithoutRostersInput = {
@@ -1075,6 +1198,9 @@ export type LeagueMemberUpdateWithoutRostersInput = {
     | string;
   user?: Prisma.UserUpdateOneRequiredWithoutLeagueMembershipsNestedInput;
   league?: Prisma.LeagueUpdateOneRequiredWithoutMembersNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateOneWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutMemberNestedInput;
 };
 
 export type LeagueMemberUncheckedUpdateWithoutRostersInput = {
@@ -1099,6 +1225,357 @@ export type LeagueMemberUncheckedUpdateWithoutRostersInput = {
     | runtime.DecimalJsLike
     | number
     | string;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateOneWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutMemberNestedInput;
+};
+
+export type LeagueMemberCreateWithoutWeeklyAnalyticsInput = {
+  id?: string;
+  teamName?: string | null;
+  teamAvatar?: string | null;
+  rosterSlot: number;
+  wins?: number;
+  losses?: number;
+  ties?: number;
+  pointsFor?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  user: Prisma.UserCreateNestedOneWithoutLeagueMembershipsInput;
+  league: Prisma.LeagueCreateNestedOneWithoutMembersInput;
+  rosters?: Prisma.RosterCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedOneWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutMemberInput;
+};
+
+export type LeagueMemberUncheckedCreateWithoutWeeklyAnalyticsInput = {
+  id?: string;
+  userId: string;
+  leagueId: string;
+  teamName?: string | null;
+  teamAvatar?: string | null;
+  rosterSlot: number;
+  wins?: number;
+  losses?: number;
+  ties?: number;
+  pointsFor?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedOneWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutMemberInput;
+};
+
+export type LeagueMemberCreateOrConnectWithoutWeeklyAnalyticsInput = {
+  where: Prisma.LeagueMemberWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutWeeklyAnalyticsInput
+  >;
+};
+
+export type LeagueMemberUpsertWithoutWeeklyAnalyticsInput = {
+  update: Prisma.XOR<
+    Prisma.LeagueMemberUpdateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueMemberUncheckedUpdateWithoutWeeklyAnalyticsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutWeeklyAnalyticsInput
+  >;
+  where?: Prisma.LeagueMemberWhereInput;
+};
+
+export type LeagueMemberUpdateToOneWithWhereWithoutWeeklyAnalyticsInput = {
+  where?: Prisma.LeagueMemberWhereInput;
+  data: Prisma.XOR<
+    Prisma.LeagueMemberUpdateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueMemberUncheckedUpdateWithoutWeeklyAnalyticsInput
+  >;
+};
+
+export type LeagueMemberUpdateWithoutWeeklyAnalyticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  teamAvatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  rosterSlot?: Prisma.IntFieldUpdateOperationsInput | number;
+  wins?: Prisma.IntFieldUpdateOperationsInput | number;
+  losses?: Prisma.IntFieldUpdateOperationsInput | number;
+  ties?: Prisma.IntFieldUpdateOperationsInput | number;
+  pointsFor?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  pointsAgainst?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  user?: Prisma.UserUpdateOneRequiredWithoutLeagueMembershipsNestedInput;
+  league?: Prisma.LeagueUpdateOneRequiredWithoutMembersNestedInput;
+  rosters?: Prisma.RosterUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateOneWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutMemberNestedInput;
+};
+
+export type LeagueMemberUncheckedUpdateWithoutWeeklyAnalyticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  leagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  teamAvatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  rosterSlot?: Prisma.IntFieldUpdateOperationsInput | number;
+  wins?: Prisma.IntFieldUpdateOperationsInput | number;
+  losses?: Prisma.IntFieldUpdateOperationsInput | number;
+  ties?: Prisma.IntFieldUpdateOperationsInput | number;
+  pointsFor?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  pointsAgainst?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  rosters?: Prisma.RosterUncheckedUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateOneWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutMemberNestedInput;
+};
+
+export type LeagueMemberCreateWithoutSeasonAnalyticsInput = {
+  id?: string;
+  teamName?: string | null;
+  teamAvatar?: string | null;
+  rosterSlot: number;
+  wins?: number;
+  losses?: number;
+  ties?: number;
+  pointsFor?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  user: Prisma.UserCreateNestedOneWithoutLeagueMembershipsInput;
+  league: Prisma.LeagueCreateNestedOneWithoutMembersInput;
+  rosters?: Prisma.RosterCreateNestedManyWithoutMemberInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutMemberInput;
+};
+
+export type LeagueMemberUncheckedCreateWithoutSeasonAnalyticsInput = {
+  id?: string;
+  userId: string;
+  leagueId: string;
+  teamName?: string | null;
+  teamAvatar?: string | null;
+  rosterSlot: number;
+  wins?: number;
+  losses?: number;
+  ties?: number;
+  pointsFor?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutMemberInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutMemberInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutMemberInput;
+};
+
+export type LeagueMemberCreateOrConnectWithoutSeasonAnalyticsInput = {
+  where: Prisma.LeagueMemberWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutSeasonAnalyticsInput
+  >;
+};
+
+export type LeagueMemberUpsertWithoutSeasonAnalyticsInput = {
+  update: Prisma.XOR<
+    Prisma.LeagueMemberUpdateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueMemberUncheckedUpdateWithoutSeasonAnalyticsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutSeasonAnalyticsInput
+  >;
+  where?: Prisma.LeagueMemberWhereInput;
+};
+
+export type LeagueMemberUpdateToOneWithWhereWithoutSeasonAnalyticsInput = {
+  where?: Prisma.LeagueMemberWhereInput;
+  data: Prisma.XOR<
+    Prisma.LeagueMemberUpdateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueMemberUncheckedUpdateWithoutSeasonAnalyticsInput
+  >;
+};
+
+export type LeagueMemberUpdateWithoutSeasonAnalyticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  teamAvatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  rosterSlot?: Prisma.IntFieldUpdateOperationsInput | number;
+  wins?: Prisma.IntFieldUpdateOperationsInput | number;
+  losses?: Prisma.IntFieldUpdateOperationsInput | number;
+  ties?: Prisma.IntFieldUpdateOperationsInput | number;
+  pointsFor?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  pointsAgainst?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  user?: Prisma.UserUpdateOneRequiredWithoutLeagueMembershipsNestedInput;
+  league?: Prisma.LeagueUpdateOneRequiredWithoutMembersNestedInput;
+  rosters?: Prisma.RosterUpdateManyWithoutMemberNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutMemberNestedInput;
+};
+
+export type LeagueMemberUncheckedUpdateWithoutSeasonAnalyticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  leagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  teamAvatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  rosterSlot?: Prisma.IntFieldUpdateOperationsInput | number;
+  wins?: Prisma.IntFieldUpdateOperationsInput | number;
+  losses?: Prisma.IntFieldUpdateOperationsInput | number;
+  ties?: Prisma.IntFieldUpdateOperationsInput | number;
+  pointsFor?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  pointsAgainst?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  rosters?: Prisma.RosterUncheckedUpdateManyWithoutMemberNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutMemberNestedInput;
+};
+
+export type LeagueMemberCreateWithoutSuperlativesInput = {
+  id?: string;
+  teamName?: string | null;
+  teamAvatar?: string | null;
+  rosterSlot: number;
+  wins?: number;
+  losses?: number;
+  ties?: number;
+  pointsFor?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  user: Prisma.UserCreateNestedOneWithoutLeagueMembershipsInput;
+  league: Prisma.LeagueCreateNestedOneWithoutMembersInput;
+  rosters?: Prisma.RosterCreateNestedManyWithoutMemberInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedOneWithoutMemberInput;
+};
+
+export type LeagueMemberUncheckedCreateWithoutSuperlativesInput = {
+  id?: string;
+  userId: string;
+  leagueId: string;
+  teamName?: string | null;
+  teamAvatar?: string | null;
+  rosterSlot: number;
+  wins?: number;
+  losses?: number;
+  ties?: number;
+  pointsFor?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  pointsAgainst?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutMemberInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutMemberInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedOneWithoutMemberInput;
+};
+
+export type LeagueMemberCreateOrConnectWithoutSuperlativesInput = {
+  where: Prisma.LeagueMemberWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutSuperlativesInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutSuperlativesInput
+  >;
+};
+
+export type LeagueMemberUpsertWithoutSuperlativesInput = {
+  update: Prisma.XOR<
+    Prisma.LeagueMemberUpdateWithoutSuperlativesInput,
+    Prisma.LeagueMemberUncheckedUpdateWithoutSuperlativesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LeagueMemberCreateWithoutSuperlativesInput,
+    Prisma.LeagueMemberUncheckedCreateWithoutSuperlativesInput
+  >;
+  where?: Prisma.LeagueMemberWhereInput;
+};
+
+export type LeagueMemberUpdateToOneWithWhereWithoutSuperlativesInput = {
+  where?: Prisma.LeagueMemberWhereInput;
+  data: Prisma.XOR<
+    Prisma.LeagueMemberUpdateWithoutSuperlativesInput,
+    Prisma.LeagueMemberUncheckedUpdateWithoutSuperlativesInput
+  >;
+};
+
+export type LeagueMemberUpdateWithoutSuperlativesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  teamAvatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  rosterSlot?: Prisma.IntFieldUpdateOperationsInput | number;
+  wins?: Prisma.IntFieldUpdateOperationsInput | number;
+  losses?: Prisma.IntFieldUpdateOperationsInput | number;
+  ties?: Prisma.IntFieldUpdateOperationsInput | number;
+  pointsFor?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  pointsAgainst?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  user?: Prisma.UserUpdateOneRequiredWithoutLeagueMembershipsNestedInput;
+  league?: Prisma.LeagueUpdateOneRequiredWithoutMembersNestedInput;
+  rosters?: Prisma.RosterUpdateManyWithoutMemberNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateOneWithoutMemberNestedInput;
+};
+
+export type LeagueMemberUncheckedUpdateWithoutSuperlativesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  userId?: Prisma.StringFieldUpdateOperationsInput | string;
+  leagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  teamAvatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  rosterSlot?: Prisma.IntFieldUpdateOperationsInput | number;
+  wins?: Prisma.IntFieldUpdateOperationsInput | number;
+  losses?: Prisma.IntFieldUpdateOperationsInput | number;
+  ties?: Prisma.IntFieldUpdateOperationsInput | number;
+  pointsFor?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  pointsAgainst?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  rosters?: Prisma.RosterUncheckedUpdateManyWithoutMemberNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateOneWithoutMemberNestedInput;
 };
 
 export type LeagueMemberCreateManyUserInput = {
@@ -1136,6 +1613,9 @@ export type LeagueMemberUpdateWithoutUserInput = {
     | string;
   league?: Prisma.LeagueUpdateOneRequiredWithoutMembersNestedInput;
   rosters?: Prisma.RosterUpdateManyWithoutMemberNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateOneWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutMemberNestedInput;
 };
 
 export type LeagueMemberUncheckedUpdateWithoutUserInput = {
@@ -1160,6 +1640,9 @@ export type LeagueMemberUncheckedUpdateWithoutUserInput = {
     | number
     | string;
   rosters?: Prisma.RosterUncheckedUpdateManyWithoutMemberNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateOneWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutMemberNestedInput;
 };
 
 export type LeagueMemberUncheckedUpdateManyWithoutUserInput = {
@@ -1220,6 +1703,9 @@ export type LeagueMemberUpdateWithoutLeagueInput = {
     | string;
   user?: Prisma.UserUpdateOneRequiredWithoutLeagueMembershipsNestedInput;
   rosters?: Prisma.RosterUpdateManyWithoutMemberNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateOneWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutMemberNestedInput;
 };
 
 export type LeagueMemberUncheckedUpdateWithoutLeagueInput = {
@@ -1244,6 +1730,9 @@ export type LeagueMemberUncheckedUpdateWithoutLeagueInput = {
     | number
     | string;
   rosters?: Prisma.RosterUncheckedUpdateManyWithoutMemberNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutMemberNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateOneWithoutMemberNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutMemberNestedInput;
 };
 
 export type LeagueMemberUncheckedUpdateManyWithoutLeagueInput = {
@@ -1275,12 +1764,16 @@ export type LeagueMemberUncheckedUpdateManyWithoutLeagueInput = {
 
 export type LeagueMemberCountOutputType = {
   rosters: number;
+  weeklyAnalytics: number;
+  superlatives: number;
 };
 
 export type LeagueMemberCountOutputTypeSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   rosters?: boolean | LeagueMemberCountOutputTypeCountRostersArgs;
+  weeklyAnalytics?: boolean | LeagueMemberCountOutputTypeCountWeeklyAnalyticsArgs;
+  superlatives?: boolean | LeagueMemberCountOutputTypeCountSuperlativesArgs;
 };
 
 /**
@@ -1304,6 +1797,24 @@ export type LeagueMemberCountOutputTypeCountRostersArgs<
   where?: Prisma.RosterWhereInput;
 };
 
+/**
+ * LeagueMemberCountOutputType without action
+ */
+export type LeagueMemberCountOutputTypeCountWeeklyAnalyticsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.TeamWeeklyAnalyticsWhereInput;
+};
+
+/**
+ * LeagueMemberCountOutputType without action
+ */
+export type LeagueMemberCountOutputTypeCountSuperlativesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LeagueSuperlativeWhereInput;
+};
+
 export type LeagueMemberSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
@@ -1322,6 +1833,9 @@ export type LeagueMemberSelect<
     user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     league?: boolean | Prisma.LeagueDefaultArgs<ExtArgs>;
     rosters?: boolean | Prisma.LeagueMember$rostersArgs<ExtArgs>;
+    weeklyAnalytics?: boolean | Prisma.LeagueMember$weeklyAnalyticsArgs<ExtArgs>;
+    seasonAnalytics?: boolean | Prisma.LeagueMember$seasonAnalyticsArgs<ExtArgs>;
+    superlatives?: boolean | Prisma.LeagueMember$superlativesArgs<ExtArgs>;
     _count?: boolean | Prisma.LeagueMemberCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['leagueMember']
@@ -1405,6 +1919,9 @@ export type LeagueMemberInclude<
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
   league?: boolean | Prisma.LeagueDefaultArgs<ExtArgs>;
   rosters?: boolean | Prisma.LeagueMember$rostersArgs<ExtArgs>;
+  weeklyAnalytics?: boolean | Prisma.LeagueMember$weeklyAnalyticsArgs<ExtArgs>;
+  seasonAnalytics?: boolean | Prisma.LeagueMember$seasonAnalyticsArgs<ExtArgs>;
+  superlatives?: boolean | Prisma.LeagueMember$superlativesArgs<ExtArgs>;
   _count?: boolean | Prisma.LeagueMemberCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type LeagueMemberIncludeCreateManyAndReturn<
@@ -1428,6 +1945,9 @@ export type $LeagueMemberPayload<
     user: Prisma.$UserPayload<ExtArgs>;
     league: Prisma.$LeaguePayload<ExtArgs>;
     rosters: Prisma.$RosterPayload<ExtArgs>[];
+    weeklyAnalytics: Prisma.$TeamWeeklyAnalyticsPayload<ExtArgs>[];
+    seasonAnalytics: Prisma.$TeamSeasonAnalyticsPayload<ExtArgs> | null;
+    superlatives: Prisma.$LeagueSuperlativePayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -2019,6 +2539,41 @@ export interface Prisma__LeagueMemberClient<
       >
     | Null
   >;
+  weeklyAnalytics<T extends Prisma.LeagueMember$weeklyAnalyticsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.LeagueMember$weeklyAnalyticsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$TeamWeeklyAnalyticsPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  seasonAnalytics<T extends Prisma.LeagueMember$seasonAnalyticsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.LeagueMember$seasonAnalyticsArgs<ExtArgs>>
+  ): Prisma.Prisma__TeamSeasonAnalyticsClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$TeamSeasonAnalyticsPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  superlatives<T extends Prisma.LeagueMember$superlativesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.LeagueMember$superlativesArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LeagueSuperlativePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2519,6 +3074,85 @@ export type LeagueMember$rostersArgs<
   take?: number;
   skip?: number;
   distinct?: Prisma.RosterScalarFieldEnum | Prisma.RosterScalarFieldEnum[];
+};
+
+/**
+ * LeagueMember.weeklyAnalytics
+ */
+export type LeagueMember$weeklyAnalyticsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the TeamWeeklyAnalytics
+   */
+  select?: Prisma.TeamWeeklyAnalyticsSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the TeamWeeklyAnalytics
+   */
+  omit?: Prisma.TeamWeeklyAnalyticsOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeamWeeklyAnalyticsInclude<ExtArgs> | null;
+  where?: Prisma.TeamWeeklyAnalyticsWhereInput;
+  orderBy?:
+    | Prisma.TeamWeeklyAnalyticsOrderByWithRelationInput
+    | Prisma.TeamWeeklyAnalyticsOrderByWithRelationInput[];
+  cursor?: Prisma.TeamWeeklyAnalyticsWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.TeamWeeklyAnalyticsScalarFieldEnum
+    | Prisma.TeamWeeklyAnalyticsScalarFieldEnum[];
+};
+
+/**
+ * LeagueMember.seasonAnalytics
+ */
+export type LeagueMember$seasonAnalyticsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the TeamSeasonAnalytics
+   */
+  select?: Prisma.TeamSeasonAnalyticsSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the TeamSeasonAnalytics
+   */
+  omit?: Prisma.TeamSeasonAnalyticsOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeamSeasonAnalyticsInclude<ExtArgs> | null;
+  where?: Prisma.TeamSeasonAnalyticsWhereInput;
+};
+
+/**
+ * LeagueMember.superlatives
+ */
+export type LeagueMember$superlativesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the LeagueSuperlative
+   */
+  select?: Prisma.LeagueSuperlativeSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the LeagueSuperlative
+   */
+  omit?: Prisma.LeagueSuperlativeOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeagueSuperlativeInclude<ExtArgs> | null;
+  where?: Prisma.LeagueSuperlativeWhereInput;
+  orderBy?:
+    | Prisma.LeagueSuperlativeOrderByWithRelationInput
+    | Prisma.LeagueSuperlativeOrderByWithRelationInput[];
+  cursor?: Prisma.LeagueSuperlativeWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.LeagueSuperlativeScalarFieldEnum | Prisma.LeagueSuperlativeScalarFieldEnum[];
 };
 
 /**

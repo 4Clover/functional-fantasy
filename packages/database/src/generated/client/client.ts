@@ -98,6 +98,51 @@ export type TransactionAdd = Prisma.TransactionAddModel;
  */
 export type TransactionDrop = Prisma.TransactionDropModel;
 /**
+ * Model PlayerValuation
+ *
+ */
+export type PlayerValuation = Prisma.PlayerValuationModel;
+/**
+ * Model ValuationHistory
+ *
+ */
+export type ValuationHistory = Prisma.ValuationHistoryModel;
+/**
+ * Model LeagueSettings
+ *
+ */
+export type LeagueSettings = Prisma.LeagueSettingsModel;
+/**
+ * Model PlayerWeeklyStats
+ *
+ */
+export type PlayerWeeklyStats = Prisma.PlayerWeeklyStatsModel;
+/**
+ * Model PlayerSeasonStats
+ *
+ */
+export type PlayerSeasonStats = Prisma.PlayerSeasonStatsModel;
+/**
+ * Model PositionBaseline
+ *
+ */
+export type PositionBaseline = Prisma.PositionBaselineModel;
+/**
+ * Model TeamWeeklyAnalytics
+ *
+ */
+export type TeamWeeklyAnalytics = Prisma.TeamWeeklyAnalyticsModel;
+/**
+ * Model TeamSeasonAnalytics
+ *
+ */
+export type TeamSeasonAnalytics = Prisma.TeamSeasonAnalyticsModel;
+/**
+ * Model LeagueSuperlative
+ *
+ */
+export type LeagueSuperlative = Prisma.LeagueSuperlativeModel;
+/**
  * Model GuildConfig
  *
  */

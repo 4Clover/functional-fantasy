@@ -76,6 +76,12 @@ model League {
   matchups     Matchup[]
   transactions Transaction[]
 
+  // Phase 4: Analytics relations
+  settings        LeagueSettings?
+  weeklyAnalytics TeamWeeklyAnalytics[]
+  seasonAnalytics TeamSeasonAnalytics[]
+  superlatives    LeagueSuperlative[]
+
   @@unique([platform, platformLeagueId, season])
   @@map("leagues")
 }
@@ -113,6 +119,11 @@ model LeagueMember {
 
   rosters Roster[]
 
+  // Phase 4: Analytics relations
+  weeklyAnalytics TeamWeeklyAnalytics[]
+  seasonAnalytics TeamSeasonAnalytics?
+  superlatives    LeagueSuperlative[]
+
   @@unique([leagueId, rosterSlot])
   @@unique([leagueId, userId])
   @@map("league_members")
@@ -143,6 +154,11 @@ model Player {
   byeWeek      Int?
 
   rosterPlayers RosterPlayer[]
+
+  // Phase 4: Analytics relations
+  valuations  PlayerValuation[]
+  weeklyStats PlayerWeeklyStats[]
+  seasonStats PlayerSeasonStats[]
 
   @@index([position, team])
   @@map("players")
@@ -262,6 +278,39 @@ enum MatchupType {
 }
 
 // ============================================
+// PHASE 4: VALUATION ENUMS
+// ============================================
+
+enum ValuationSource {
+  KTC_DYNASTY
+  KTC_REDRAFT
+  DYNASTY_PROCESS
+}
+
+enum ValueTrend {
+  RISING
+  STABLE
+  FALLING
+}
+
+enum BaselineType {
+  STRICT
+  WAIVER
+}
+
+enum SuperlativeType {
+  BEST_MANAGER
+  WORST_MANAGER
+  LUCKIEST_TEAM
+  UNLUCKIEST_TEAM
+  MOST_CONSISTENT
+  BOOM_BUST
+  HIGHEST_SCORER
+  WEEKLY_MVP
+  WEEKLY_LVP
+}
+
+// ============================================
 // TRANSACTIONS
 // ============================================
 
@@ -321,6 +370,189 @@ model TransactionDrop {
   pickInfo Json?
 
   @@map("transaction_drops")
+}
+
+// ============================================
+// PHASE 4: PLAYER VALUATIONS
+// ============================================
+
+model PlayerValuation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  playerId String
+  player   Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  source      ValuationSource
+  scrapedAt   DateTime
+  baseValue   Int
+  tier        Int?
+  trend       ValueTrend @default(STABLE)
+  weeklyDelta Int        @default(0)
+
+  @@unique([playerId, source])
+  @@index([source, scrapedAt])
+  @@map("player_valuations")
+}
+
+model ValuationHistory {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  playerId   String
+  source     ValuationSource
+  value      Int
+  recordedAt DateTime
+
+  @@index([playerId, source, recordedAt])
+  @@map("valuation_history")
+}
+
+model LeagueSettings {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leagueId String @unique
+  league   League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+
+  isSuperFlex   Boolean @default(false)
+  tePremium     Decimal @default(0) @db.Decimal(3, 2)
+  pprValue      Decimal @default(1) @db.Decimal(3, 2)
+  rosterSize    Int     @default(15)
+  benchSpots    Int     @default(6)
+  startingSlots Json    @default("{\"QB\": 1, \"RB\": 2, \"WR\": 2, \"TE\": 1, \"FLEX\": 1}")
+
+  @@map("league_settings")
+}
+
+// ============================================
+// PHASE 4: PLAYER STATISTICS
+// ============================================
+
+model PlayerWeeklyStats {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  playerId  String
+  player    Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  season    Int
+  week      Int
+  points    Decimal  @db.Decimal(10, 2)
+  projected Decimal? @db.Decimal(10, 2)
+
+  @@unique([playerId, season, week])
+  @@map("player_weekly_stats")
+}
+
+model PlayerSeasonStats {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  playerId     String
+  player       Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  season       Int
+  totalPoints  Decimal  @db.Decimal(10, 2)
+  gamesPlayed  Int      @default(0)
+  avgPoints    Decimal  @db.Decimal(10, 2)
+  stdDeviation Decimal  @db.Decimal(10, 4)
+  vorpStrict   Decimal? @db.Decimal(10, 2)
+  vorpWaiver   Decimal? @db.Decimal(10, 2)
+  war          Decimal? @db.Decimal(10, 4)
+
+  @@unique([playerId, season])
+  @@map("player_season_stats")
+}
+
+model PositionBaseline {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  season        Int
+  position      Position
+  baselineType  BaselineType
+  teamCount     Int
+  baselineRank  Int
+  baselineValue Decimal @db.Decimal(10, 2)
+
+  @@unique([season, position, baselineType, teamCount])
+  @@map("position_baselines")
+}
+
+// ============================================
+// PHASE 4: TEAM ANALYTICS
+// ============================================
+
+model TeamWeeklyAnalytics {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leagueId String
+  league   League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  memberId String
+  member   LeagueMember @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  season           Int
+  week             Int
+  actualScore      Decimal @db.Decimal(10, 2)
+  optimalScore     Decimal @db.Decimal(10, 2)
+  lineupEfficiency Decimal @db.Decimal(5, 2)
+  allPlayWins      Int     @default(0)
+  allPlayLosses    Int     @default(0)
+  allPlayTies      Int     @default(0)
+  weeklyRank       Int
+
+  @@unique([memberId, season, week])
+  @@map("team_weekly_analytics")
+}
+
+model TeamSeasonAnalytics {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leagueId String
+  league   League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  memberId String @unique
+  member   LeagueMember @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  season              Int
+  totalActualScore    Decimal @db.Decimal(10, 2)
+  totalOptimalScore   Decimal @db.Decimal(10, 2)
+  avgLineupEfficiency Decimal @db.Decimal(5, 2)
+  allPlayWins         Int     @default(0)
+  allPlayLosses       Int     @default(0)
+  allPlayTies         Int     @default(0)
+  allPlayWinPct       Decimal @db.Decimal(5, 4)
+  expectedWins        Decimal @db.Decimal(5, 2)
+  actualWins          Int
+  luckIndex           Decimal @db.Decimal(6, 4)
+  pointsStdDev        Decimal @db.Decimal(10, 2)
+
+  @@unique([memberId, season])
+  @@map("team_season_analytics")
+}
+
+model LeagueSuperlative {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  leagueId        String
+  league          League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  season          Int
+  week            Int?
+  superlativeType SuperlativeType
+  memberId        String
+  member          LeagueMember @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  value           Decimal @db.Decimal(10, 2)
+  metadata        Json?
+
+  @@unique([leagueId, season, week, superlativeType])
+  @@map("league_superlatives")
 }
 
 // ============================================

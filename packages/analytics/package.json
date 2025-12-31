@@ -1,0 +1,27 @@
+{
+  "name": "@fantasy/analytics",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fantasy/database": "workspace:*",
+    "@fantasy/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@fantasy/typescript-config": "workspace:*",
+    "typescript": "^5.8.3"
+  }
+}

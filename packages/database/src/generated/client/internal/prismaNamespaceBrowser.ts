@@ -59,6 +59,15 @@ export const ModelName = {
   Transaction: 'Transaction',
   TransactionAdd: 'TransactionAdd',
   TransactionDrop: 'TransactionDrop',
+  PlayerValuation: 'PlayerValuation',
+  ValuationHistory: 'ValuationHistory',
+  LeagueSettings: 'LeagueSettings',
+  PlayerWeeklyStats: 'PlayerWeeklyStats',
+  PlayerSeasonStats: 'PlayerSeasonStats',
+  PositionBaseline: 'PositionBaseline',
+  TeamWeeklyAnalytics: 'TeamWeeklyAnalytics',
+  TeamSeasonAnalytics: 'TeamSeasonAnalytics',
+  LeagueSuperlative: 'LeagueSuperlative',
   GuildConfig: 'GuildConfig',
   UserNotificationPreference: 'UserNotificationPreference',
 } as const;
@@ -242,6 +251,155 @@ export const TransactionDropScalarFieldEnum = {
 export type TransactionDropScalarFieldEnum =
   (typeof TransactionDropScalarFieldEnum)[keyof typeof TransactionDropScalarFieldEnum];
 
+export const PlayerValuationScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  playerId: 'playerId',
+  source: 'source',
+  scrapedAt: 'scrapedAt',
+  baseValue: 'baseValue',
+  tier: 'tier',
+  trend: 'trend',
+  weeklyDelta: 'weeklyDelta',
+} as const;
+
+export type PlayerValuationScalarFieldEnum =
+  (typeof PlayerValuationScalarFieldEnum)[keyof typeof PlayerValuationScalarFieldEnum];
+
+export const ValuationHistoryScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  playerId: 'playerId',
+  source: 'source',
+  value: 'value',
+  recordedAt: 'recordedAt',
+} as const;
+
+export type ValuationHistoryScalarFieldEnum =
+  (typeof ValuationHistoryScalarFieldEnum)[keyof typeof ValuationHistoryScalarFieldEnum];
+
+export const LeagueSettingsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  leagueId: 'leagueId',
+  isSuperFlex: 'isSuperFlex',
+  tePremium: 'tePremium',
+  pprValue: 'pprValue',
+  rosterSize: 'rosterSize',
+  benchSpots: 'benchSpots',
+  startingSlots: 'startingSlots',
+} as const;
+
+export type LeagueSettingsScalarFieldEnum =
+  (typeof LeagueSettingsScalarFieldEnum)[keyof typeof LeagueSettingsScalarFieldEnum];
+
+export const PlayerWeeklyStatsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  playerId: 'playerId',
+  season: 'season',
+  week: 'week',
+  points: 'points',
+  projected: 'projected',
+} as const;
+
+export type PlayerWeeklyStatsScalarFieldEnum =
+  (typeof PlayerWeeklyStatsScalarFieldEnum)[keyof typeof PlayerWeeklyStatsScalarFieldEnum];
+
+export const PlayerSeasonStatsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  playerId: 'playerId',
+  season: 'season',
+  totalPoints: 'totalPoints',
+  gamesPlayed: 'gamesPlayed',
+  avgPoints: 'avgPoints',
+  stdDeviation: 'stdDeviation',
+  vorpStrict: 'vorpStrict',
+  vorpWaiver: 'vorpWaiver',
+  war: 'war',
+} as const;
+
+export type PlayerSeasonStatsScalarFieldEnum =
+  (typeof PlayerSeasonStatsScalarFieldEnum)[keyof typeof PlayerSeasonStatsScalarFieldEnum];
+
+export const PositionBaselineScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  season: 'season',
+  position: 'position',
+  baselineType: 'baselineType',
+  teamCount: 'teamCount',
+  baselineRank: 'baselineRank',
+  baselineValue: 'baselineValue',
+} as const;
+
+export type PositionBaselineScalarFieldEnum =
+  (typeof PositionBaselineScalarFieldEnum)[keyof typeof PositionBaselineScalarFieldEnum];
+
+export const TeamWeeklyAnalyticsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  leagueId: 'leagueId',
+  memberId: 'memberId',
+  season: 'season',
+  week: 'week',
+  actualScore: 'actualScore',
+  optimalScore: 'optimalScore',
+  lineupEfficiency: 'lineupEfficiency',
+  allPlayWins: 'allPlayWins',
+  allPlayLosses: 'allPlayLosses',
+  allPlayTies: 'allPlayTies',
+  weeklyRank: 'weeklyRank',
+} as const;
+
+export type TeamWeeklyAnalyticsScalarFieldEnum =
+  (typeof TeamWeeklyAnalyticsScalarFieldEnum)[keyof typeof TeamWeeklyAnalyticsScalarFieldEnum];
+
+export const TeamSeasonAnalyticsScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  leagueId: 'leagueId',
+  memberId: 'memberId',
+  season: 'season',
+  totalActualScore: 'totalActualScore',
+  totalOptimalScore: 'totalOptimalScore',
+  avgLineupEfficiency: 'avgLineupEfficiency',
+  allPlayWins: 'allPlayWins',
+  allPlayLosses: 'allPlayLosses',
+  allPlayTies: 'allPlayTies',
+  allPlayWinPct: 'allPlayWinPct',
+  expectedWins: 'expectedWins',
+  actualWins: 'actualWins',
+  luckIndex: 'luckIndex',
+  pointsStdDev: 'pointsStdDev',
+} as const;
+
+export type TeamSeasonAnalyticsScalarFieldEnum =
+  (typeof TeamSeasonAnalyticsScalarFieldEnum)[keyof typeof TeamSeasonAnalyticsScalarFieldEnum];
+
+export const LeagueSuperlativeScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  leagueId: 'leagueId',
+  season: 'season',
+  week: 'week',
+  superlativeType: 'superlativeType',
+  memberId: 'memberId',
+  value: 'value',
+  metadata: 'metadata',
+} as const;
+
+export type LeagueSuperlativeScalarFieldEnum =
+  (typeof LeagueSuperlativeScalarFieldEnum)[keyof typeof LeagueSuperlativeScalarFieldEnum];
+
 export const GuildConfigScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
@@ -291,6 +449,12 @@ export const NullableJsonNullValueInput = {
 
 export type NullableJsonNullValueInput =
   (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput];
+
+export const JsonNullValueInput = {
+  JsonNull: 'JsonNull',
+} as const;
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput];
 
 export const QueryMode = {
   default: 'default',

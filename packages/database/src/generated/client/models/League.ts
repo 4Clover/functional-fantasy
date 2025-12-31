@@ -272,6 +272,13 @@ export type LeagueWhereInput = {
   rosters?: Prisma.RosterListRelationFilter;
   matchups?: Prisma.MatchupListRelationFilter;
   transactions?: Prisma.TransactionListRelationFilter;
+  settings?: Prisma.XOR<
+    Prisma.LeagueSettingsNullableScalarRelationFilter,
+    Prisma.LeagueSettingsWhereInput
+  > | null;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsListRelationFilter;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsListRelationFilter;
+  superlatives?: Prisma.LeagueSuperlativeListRelationFilter;
 };
 
 export type LeagueOrderByWithRelationInput = {
@@ -290,6 +297,10 @@ export type LeagueOrderByWithRelationInput = {
   rosters?: Prisma.RosterOrderByRelationAggregateInput;
   matchups?: Prisma.MatchupOrderByRelationAggregateInput;
   transactions?: Prisma.TransactionOrderByRelationAggregateInput;
+  settings?: Prisma.LeagueSettingsOrderByWithRelationInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsOrderByRelationAggregateInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsOrderByRelationAggregateInput;
+  superlatives?: Prisma.LeagueSuperlativeOrderByRelationAggregateInput;
 };
 
 export type LeagueWhereUniqueInput = Prisma.AtLeast<
@@ -313,6 +324,13 @@ export type LeagueWhereUniqueInput = Prisma.AtLeast<
     rosters?: Prisma.RosterListRelationFilter;
     matchups?: Prisma.MatchupListRelationFilter;
     transactions?: Prisma.TransactionListRelationFilter;
+    settings?: Prisma.XOR<
+      Prisma.LeagueSettingsNullableScalarRelationFilter,
+      Prisma.LeagueSettingsWhereInput
+    > | null;
+    weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsListRelationFilter;
+    seasonAnalytics?: Prisma.TeamSeasonAnalyticsListRelationFilter;
+    superlatives?: Prisma.LeagueSuperlativeListRelationFilter;
   },
   'id' | 'platform_platformLeagueId_season'
 >;
@@ -369,6 +387,10 @@ export type LeagueCreateInput = {
   rosters?: Prisma.RosterCreateNestedManyWithoutLeagueInput;
   matchups?: Prisma.MatchupCreateNestedManyWithoutLeagueInput;
   transactions?: Prisma.TransactionCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutLeagueInput;
 };
 
 export type LeagueUncheckedCreateInput = {
@@ -387,6 +409,10 @@ export type LeagueUncheckedCreateInput = {
   rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutLeagueInput;
   matchups?: Prisma.MatchupUncheckedCreateNestedManyWithoutLeagueInput;
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsUncheckedCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutLeagueInput;
 };
 
 export type LeagueUpdateInput = {
@@ -405,6 +431,10 @@ export type LeagueUpdateInput = {
   rosters?: Prisma.RosterUpdateManyWithoutLeagueNestedInput;
   matchups?: Prisma.MatchupUpdateManyWithoutLeagueNestedInput;
   transactions?: Prisma.TransactionUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutLeagueNestedInput;
 };
 
 export type LeagueUncheckedUpdateInput = {
@@ -423,6 +453,10 @@ export type LeagueUncheckedUpdateInput = {
   rosters?: Prisma.RosterUncheckedUpdateManyWithoutLeagueNestedInput;
   matchups?: Prisma.MatchupUncheckedUpdateManyWithoutLeagueNestedInput;
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUncheckedUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutLeagueNestedInput;
 };
 
 export type LeagueCreateManyInput = {
@@ -652,6 +686,110 @@ export type LeagueUpdateOneRequiredWithoutTransactionsNestedInput = {
   >;
 };
 
+export type LeagueCreateNestedOneWithoutSettingsInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSettingsInput,
+    Prisma.LeagueUncheckedCreateWithoutSettingsInput
+  >;
+  connectOrCreate?: Prisma.LeagueCreateOrConnectWithoutSettingsInput;
+  connect?: Prisma.LeagueWhereUniqueInput;
+};
+
+export type LeagueUpdateOneRequiredWithoutSettingsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSettingsInput,
+    Prisma.LeagueUncheckedCreateWithoutSettingsInput
+  >;
+  connectOrCreate?: Prisma.LeagueCreateOrConnectWithoutSettingsInput;
+  upsert?: Prisma.LeagueUpsertWithoutSettingsInput;
+  connect?: Prisma.LeagueWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.LeagueUpdateToOneWithWhereWithoutSettingsInput,
+      Prisma.LeagueUpdateWithoutSettingsInput
+    >,
+    Prisma.LeagueUncheckedUpdateWithoutSettingsInput
+  >;
+};
+
+export type LeagueCreateNestedOneWithoutWeeklyAnalyticsInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueCreateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueUncheckedCreateWithoutWeeklyAnalyticsInput
+  >;
+  connectOrCreate?: Prisma.LeagueCreateOrConnectWithoutWeeklyAnalyticsInput;
+  connect?: Prisma.LeagueWhereUniqueInput;
+};
+
+export type LeagueUpdateOneRequiredWithoutWeeklyAnalyticsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueCreateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueUncheckedCreateWithoutWeeklyAnalyticsInput
+  >;
+  connectOrCreate?: Prisma.LeagueCreateOrConnectWithoutWeeklyAnalyticsInput;
+  upsert?: Prisma.LeagueUpsertWithoutWeeklyAnalyticsInput;
+  connect?: Prisma.LeagueWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.LeagueUpdateToOneWithWhereWithoutWeeklyAnalyticsInput,
+      Prisma.LeagueUpdateWithoutWeeklyAnalyticsInput
+    >,
+    Prisma.LeagueUncheckedUpdateWithoutWeeklyAnalyticsInput
+  >;
+};
+
+export type LeagueCreateNestedOneWithoutSeasonAnalyticsInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueUncheckedCreateWithoutSeasonAnalyticsInput
+  >;
+  connectOrCreate?: Prisma.LeagueCreateOrConnectWithoutSeasonAnalyticsInput;
+  connect?: Prisma.LeagueWhereUniqueInput;
+};
+
+export type LeagueUpdateOneRequiredWithoutSeasonAnalyticsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueUncheckedCreateWithoutSeasonAnalyticsInput
+  >;
+  connectOrCreate?: Prisma.LeagueCreateOrConnectWithoutSeasonAnalyticsInput;
+  upsert?: Prisma.LeagueUpsertWithoutSeasonAnalyticsInput;
+  connect?: Prisma.LeagueWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.LeagueUpdateToOneWithWhereWithoutSeasonAnalyticsInput,
+      Prisma.LeagueUpdateWithoutSeasonAnalyticsInput
+    >,
+    Prisma.LeagueUncheckedUpdateWithoutSeasonAnalyticsInput
+  >;
+};
+
+export type LeagueCreateNestedOneWithoutSuperlativesInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSuperlativesInput,
+    Prisma.LeagueUncheckedCreateWithoutSuperlativesInput
+  >;
+  connectOrCreate?: Prisma.LeagueCreateOrConnectWithoutSuperlativesInput;
+  connect?: Prisma.LeagueWhereUniqueInput;
+};
+
+export type LeagueUpdateOneRequiredWithoutSuperlativesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSuperlativesInput,
+    Prisma.LeagueUncheckedCreateWithoutSuperlativesInput
+  >;
+  connectOrCreate?: Prisma.LeagueCreateOrConnectWithoutSuperlativesInput;
+  upsert?: Prisma.LeagueUpsertWithoutSuperlativesInput;
+  connect?: Prisma.LeagueWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.LeagueUpdateToOneWithWhereWithoutSuperlativesInput,
+      Prisma.LeagueUpdateWithoutSuperlativesInput
+    >,
+    Prisma.LeagueUncheckedUpdateWithoutSuperlativesInput
+  >;
+};
+
 export type LeagueCreateWithoutMembersInput = {
   id?: string;
   createdAt?: Date | string;
@@ -667,6 +805,10 @@ export type LeagueCreateWithoutMembersInput = {
   rosters?: Prisma.RosterCreateNestedManyWithoutLeagueInput;
   matchups?: Prisma.MatchupCreateNestedManyWithoutLeagueInput;
   transactions?: Prisma.TransactionCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutLeagueInput;
 };
 
 export type LeagueUncheckedCreateWithoutMembersInput = {
@@ -684,6 +826,10 @@ export type LeagueUncheckedCreateWithoutMembersInput = {
   rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutLeagueInput;
   matchups?: Prisma.MatchupUncheckedCreateNestedManyWithoutLeagueInput;
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsUncheckedCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutLeagueInput;
 };
 
 export type LeagueCreateOrConnectWithoutMembersInput = {
@@ -729,6 +875,10 @@ export type LeagueUpdateWithoutMembersInput = {
   rosters?: Prisma.RosterUpdateManyWithoutLeagueNestedInput;
   matchups?: Prisma.MatchupUpdateManyWithoutLeagueNestedInput;
   transactions?: Prisma.TransactionUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutLeagueNestedInput;
 };
 
 export type LeagueUncheckedUpdateWithoutMembersInput = {
@@ -746,6 +896,10 @@ export type LeagueUncheckedUpdateWithoutMembersInput = {
   rosters?: Prisma.RosterUncheckedUpdateManyWithoutLeagueNestedInput;
   matchups?: Prisma.MatchupUncheckedUpdateManyWithoutLeagueNestedInput;
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUncheckedUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutLeagueNestedInput;
 };
 
 export type LeagueCreateWithoutRostersInput = {
@@ -763,6 +917,10 @@ export type LeagueCreateWithoutRostersInput = {
   members?: Prisma.LeagueMemberCreateNestedManyWithoutLeagueInput;
   matchups?: Prisma.MatchupCreateNestedManyWithoutLeagueInput;
   transactions?: Prisma.TransactionCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutLeagueInput;
 };
 
 export type LeagueUncheckedCreateWithoutRostersInput = {
@@ -780,6 +938,10 @@ export type LeagueUncheckedCreateWithoutRostersInput = {
   members?: Prisma.LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput;
   matchups?: Prisma.MatchupUncheckedCreateNestedManyWithoutLeagueInput;
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsUncheckedCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutLeagueInput;
 };
 
 export type LeagueCreateOrConnectWithoutRostersInput = {
@@ -825,6 +987,10 @@ export type LeagueUpdateWithoutRostersInput = {
   members?: Prisma.LeagueMemberUpdateManyWithoutLeagueNestedInput;
   matchups?: Prisma.MatchupUpdateManyWithoutLeagueNestedInput;
   transactions?: Prisma.TransactionUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutLeagueNestedInput;
 };
 
 export type LeagueUncheckedUpdateWithoutRostersInput = {
@@ -842,6 +1008,10 @@ export type LeagueUncheckedUpdateWithoutRostersInput = {
   members?: Prisma.LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput;
   matchups?: Prisma.MatchupUncheckedUpdateManyWithoutLeagueNestedInput;
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUncheckedUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutLeagueNestedInput;
 };
 
 export type LeagueCreateWithoutMatchupsInput = {
@@ -859,6 +1029,10 @@ export type LeagueCreateWithoutMatchupsInput = {
   members?: Prisma.LeagueMemberCreateNestedManyWithoutLeagueInput;
   rosters?: Prisma.RosterCreateNestedManyWithoutLeagueInput;
   transactions?: Prisma.TransactionCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutLeagueInput;
 };
 
 export type LeagueUncheckedCreateWithoutMatchupsInput = {
@@ -876,6 +1050,10 @@ export type LeagueUncheckedCreateWithoutMatchupsInput = {
   members?: Prisma.LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput;
   rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutLeagueInput;
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsUncheckedCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutLeagueInput;
 };
 
 export type LeagueCreateOrConnectWithoutMatchupsInput = {
@@ -921,6 +1099,10 @@ export type LeagueUpdateWithoutMatchupsInput = {
   members?: Prisma.LeagueMemberUpdateManyWithoutLeagueNestedInput;
   rosters?: Prisma.RosterUpdateManyWithoutLeagueNestedInput;
   transactions?: Prisma.TransactionUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutLeagueNestedInput;
 };
 
 export type LeagueUncheckedUpdateWithoutMatchupsInput = {
@@ -938,6 +1120,10 @@ export type LeagueUncheckedUpdateWithoutMatchupsInput = {
   members?: Prisma.LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput;
   rosters?: Prisma.RosterUncheckedUpdateManyWithoutLeagueNestedInput;
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUncheckedUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutLeagueNestedInput;
 };
 
 export type LeagueCreateWithoutTransactionsInput = {
@@ -955,6 +1141,10 @@ export type LeagueCreateWithoutTransactionsInput = {
   members?: Prisma.LeagueMemberCreateNestedManyWithoutLeagueInput;
   rosters?: Prisma.RosterCreateNestedManyWithoutLeagueInput;
   matchups?: Prisma.MatchupCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutLeagueInput;
 };
 
 export type LeagueUncheckedCreateWithoutTransactionsInput = {
@@ -972,6 +1162,10 @@ export type LeagueUncheckedCreateWithoutTransactionsInput = {
   members?: Prisma.LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput;
   rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutLeagueInput;
   matchups?: Prisma.MatchupUncheckedCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsUncheckedCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutLeagueInput;
 };
 
 export type LeagueCreateOrConnectWithoutTransactionsInput = {
@@ -1017,6 +1211,10 @@ export type LeagueUpdateWithoutTransactionsInput = {
   members?: Prisma.LeagueMemberUpdateManyWithoutLeagueNestedInput;
   rosters?: Prisma.RosterUpdateManyWithoutLeagueNestedInput;
   matchups?: Prisma.MatchupUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutLeagueNestedInput;
 };
 
 export type LeagueUncheckedUpdateWithoutTransactionsInput = {
@@ -1034,6 +1232,458 @@ export type LeagueUncheckedUpdateWithoutTransactionsInput = {
   members?: Prisma.LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput;
   rosters?: Prisma.RosterUncheckedUpdateManyWithoutLeagueNestedInput;
   matchups?: Prisma.MatchupUncheckedUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUncheckedUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutLeagueNestedInput;
+};
+
+export type LeagueCreateWithoutSettingsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  platform: $Enums.Platform;
+  platformLeagueId: string;
+  name: string;
+  season: number;
+  leagueType?: $Enums.LeagueType;
+  scoringFormat?: $Enums.ScoringFormat;
+  rosterSize?: number;
+  teamCount: number;
+  members?: Prisma.LeagueMemberCreateNestedManyWithoutLeagueInput;
+  rosters?: Prisma.RosterCreateNestedManyWithoutLeagueInput;
+  matchups?: Prisma.MatchupCreateNestedManyWithoutLeagueInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutLeagueInput;
+};
+
+export type LeagueUncheckedCreateWithoutSettingsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  platform: $Enums.Platform;
+  platformLeagueId: string;
+  name: string;
+  season: number;
+  leagueType?: $Enums.LeagueType;
+  scoringFormat?: $Enums.ScoringFormat;
+  rosterSize?: number;
+  teamCount: number;
+  members?: Prisma.LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput;
+  rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutLeagueInput;
+  matchups?: Prisma.MatchupUncheckedCreateNestedManyWithoutLeagueInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutLeagueInput;
+};
+
+export type LeagueCreateOrConnectWithoutSettingsInput = {
+  where: Prisma.LeagueWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSettingsInput,
+    Prisma.LeagueUncheckedCreateWithoutSettingsInput
+  >;
+};
+
+export type LeagueUpsertWithoutSettingsInput = {
+  update: Prisma.XOR<
+    Prisma.LeagueUpdateWithoutSettingsInput,
+    Prisma.LeagueUncheckedUpdateWithoutSettingsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSettingsInput,
+    Prisma.LeagueUncheckedCreateWithoutSettingsInput
+  >;
+  where?: Prisma.LeagueWhereInput;
+};
+
+export type LeagueUpdateToOneWithWhereWithoutSettingsInput = {
+  where?: Prisma.LeagueWhereInput;
+  data: Prisma.XOR<
+    Prisma.LeagueUpdateWithoutSettingsInput,
+    Prisma.LeagueUncheckedUpdateWithoutSettingsInput
+  >;
+};
+
+export type LeagueUpdateWithoutSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  platform?: Prisma.EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+  platformLeagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  season?: Prisma.IntFieldUpdateOperationsInput | number;
+  leagueType?: Prisma.EnumLeagueTypeFieldUpdateOperationsInput | $Enums.LeagueType;
+  scoringFormat?: Prisma.EnumScoringFormatFieldUpdateOperationsInput | $Enums.ScoringFormat;
+  rosterSize?: Prisma.IntFieldUpdateOperationsInput | number;
+  teamCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  members?: Prisma.LeagueMemberUpdateManyWithoutLeagueNestedInput;
+  rosters?: Prisma.RosterUpdateManyWithoutLeagueNestedInput;
+  matchups?: Prisma.MatchupUpdateManyWithoutLeagueNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutLeagueNestedInput;
+};
+
+export type LeagueUncheckedUpdateWithoutSettingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  platform?: Prisma.EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+  platformLeagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  season?: Prisma.IntFieldUpdateOperationsInput | number;
+  leagueType?: Prisma.EnumLeagueTypeFieldUpdateOperationsInput | $Enums.LeagueType;
+  scoringFormat?: Prisma.EnumScoringFormatFieldUpdateOperationsInput | $Enums.ScoringFormat;
+  rosterSize?: Prisma.IntFieldUpdateOperationsInput | number;
+  teamCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  members?: Prisma.LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput;
+  rosters?: Prisma.RosterUncheckedUpdateManyWithoutLeagueNestedInput;
+  matchups?: Prisma.MatchupUncheckedUpdateManyWithoutLeagueNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutLeagueNestedInput;
+};
+
+export type LeagueCreateWithoutWeeklyAnalyticsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  platform: $Enums.Platform;
+  platformLeagueId: string;
+  name: string;
+  season: number;
+  leagueType?: $Enums.LeagueType;
+  scoringFormat?: $Enums.ScoringFormat;
+  rosterSize?: number;
+  teamCount: number;
+  members?: Prisma.LeagueMemberCreateNestedManyWithoutLeagueInput;
+  rosters?: Prisma.RosterCreateNestedManyWithoutLeagueInput;
+  matchups?: Prisma.MatchupCreateNestedManyWithoutLeagueInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsCreateNestedOneWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutLeagueInput;
+};
+
+export type LeagueUncheckedCreateWithoutWeeklyAnalyticsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  platform: $Enums.Platform;
+  platformLeagueId: string;
+  name: string;
+  season: number;
+  leagueType?: $Enums.LeagueType;
+  scoringFormat?: $Enums.ScoringFormat;
+  rosterSize?: number;
+  teamCount: number;
+  members?: Prisma.LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput;
+  rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutLeagueInput;
+  matchups?: Prisma.MatchupUncheckedCreateNestedManyWithoutLeagueInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsUncheckedCreateNestedOneWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutLeagueInput;
+};
+
+export type LeagueCreateOrConnectWithoutWeeklyAnalyticsInput = {
+  where: Prisma.LeagueWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LeagueCreateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueUncheckedCreateWithoutWeeklyAnalyticsInput
+  >;
+};
+
+export type LeagueUpsertWithoutWeeklyAnalyticsInput = {
+  update: Prisma.XOR<
+    Prisma.LeagueUpdateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueUncheckedUpdateWithoutWeeklyAnalyticsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LeagueCreateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueUncheckedCreateWithoutWeeklyAnalyticsInput
+  >;
+  where?: Prisma.LeagueWhereInput;
+};
+
+export type LeagueUpdateToOneWithWhereWithoutWeeklyAnalyticsInput = {
+  where?: Prisma.LeagueWhereInput;
+  data: Prisma.XOR<
+    Prisma.LeagueUpdateWithoutWeeklyAnalyticsInput,
+    Prisma.LeagueUncheckedUpdateWithoutWeeklyAnalyticsInput
+  >;
+};
+
+export type LeagueUpdateWithoutWeeklyAnalyticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  platform?: Prisma.EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+  platformLeagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  season?: Prisma.IntFieldUpdateOperationsInput | number;
+  leagueType?: Prisma.EnumLeagueTypeFieldUpdateOperationsInput | $Enums.LeagueType;
+  scoringFormat?: Prisma.EnumScoringFormatFieldUpdateOperationsInput | $Enums.ScoringFormat;
+  rosterSize?: Prisma.IntFieldUpdateOperationsInput | number;
+  teamCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  members?: Prisma.LeagueMemberUpdateManyWithoutLeagueNestedInput;
+  rosters?: Prisma.RosterUpdateManyWithoutLeagueNestedInput;
+  matchups?: Prisma.MatchupUpdateManyWithoutLeagueNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUpdateOneWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutLeagueNestedInput;
+};
+
+export type LeagueUncheckedUpdateWithoutWeeklyAnalyticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  platform?: Prisma.EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+  platformLeagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  season?: Prisma.IntFieldUpdateOperationsInput | number;
+  leagueType?: Prisma.EnumLeagueTypeFieldUpdateOperationsInput | $Enums.LeagueType;
+  scoringFormat?: Prisma.EnumScoringFormatFieldUpdateOperationsInput | $Enums.ScoringFormat;
+  rosterSize?: Prisma.IntFieldUpdateOperationsInput | number;
+  teamCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  members?: Prisma.LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput;
+  rosters?: Prisma.RosterUncheckedUpdateManyWithoutLeagueNestedInput;
+  matchups?: Prisma.MatchupUncheckedUpdateManyWithoutLeagueNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUncheckedUpdateOneWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutLeagueNestedInput;
+};
+
+export type LeagueCreateWithoutSeasonAnalyticsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  platform: $Enums.Platform;
+  platformLeagueId: string;
+  name: string;
+  season: number;
+  leagueType?: $Enums.LeagueType;
+  scoringFormat?: $Enums.ScoringFormat;
+  rosterSize?: number;
+  teamCount: number;
+  members?: Prisma.LeagueMemberCreateNestedManyWithoutLeagueInput;
+  rosters?: Prisma.RosterCreateNestedManyWithoutLeagueInput;
+  matchups?: Prisma.MatchupCreateNestedManyWithoutLeagueInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeCreateNestedManyWithoutLeagueInput;
+};
+
+export type LeagueUncheckedCreateWithoutSeasonAnalyticsInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  platform: $Enums.Platform;
+  platformLeagueId: string;
+  name: string;
+  season: number;
+  leagueType?: $Enums.LeagueType;
+  scoringFormat?: $Enums.ScoringFormat;
+  rosterSize?: number;
+  teamCount: number;
+  members?: Prisma.LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput;
+  rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutLeagueInput;
+  matchups?: Prisma.MatchupUncheckedCreateNestedManyWithoutLeagueInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsUncheckedCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedCreateNestedManyWithoutLeagueInput;
+};
+
+export type LeagueCreateOrConnectWithoutSeasonAnalyticsInput = {
+  where: Prisma.LeagueWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueUncheckedCreateWithoutSeasonAnalyticsInput
+  >;
+};
+
+export type LeagueUpsertWithoutSeasonAnalyticsInput = {
+  update: Prisma.XOR<
+    Prisma.LeagueUpdateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueUncheckedUpdateWithoutSeasonAnalyticsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueUncheckedCreateWithoutSeasonAnalyticsInput
+  >;
+  where?: Prisma.LeagueWhereInput;
+};
+
+export type LeagueUpdateToOneWithWhereWithoutSeasonAnalyticsInput = {
+  where?: Prisma.LeagueWhereInput;
+  data: Prisma.XOR<
+    Prisma.LeagueUpdateWithoutSeasonAnalyticsInput,
+    Prisma.LeagueUncheckedUpdateWithoutSeasonAnalyticsInput
+  >;
+};
+
+export type LeagueUpdateWithoutSeasonAnalyticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  platform?: Prisma.EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+  platformLeagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  season?: Prisma.IntFieldUpdateOperationsInput | number;
+  leagueType?: Prisma.EnumLeagueTypeFieldUpdateOperationsInput | $Enums.LeagueType;
+  scoringFormat?: Prisma.EnumScoringFormatFieldUpdateOperationsInput | $Enums.ScoringFormat;
+  rosterSize?: Prisma.IntFieldUpdateOperationsInput | number;
+  teamCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  members?: Prisma.LeagueMemberUpdateManyWithoutLeagueNestedInput;
+  rosters?: Prisma.RosterUpdateManyWithoutLeagueNestedInput;
+  matchups?: Prisma.MatchupUpdateManyWithoutLeagueNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUpdateManyWithoutLeagueNestedInput;
+};
+
+export type LeagueUncheckedUpdateWithoutSeasonAnalyticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  platform?: Prisma.EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+  platformLeagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  season?: Prisma.IntFieldUpdateOperationsInput | number;
+  leagueType?: Prisma.EnumLeagueTypeFieldUpdateOperationsInput | $Enums.LeagueType;
+  scoringFormat?: Prisma.EnumScoringFormatFieldUpdateOperationsInput | $Enums.ScoringFormat;
+  rosterSize?: Prisma.IntFieldUpdateOperationsInput | number;
+  teamCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  members?: Prisma.LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput;
+  rosters?: Prisma.RosterUncheckedUpdateManyWithoutLeagueNestedInput;
+  matchups?: Prisma.MatchupUncheckedUpdateManyWithoutLeagueNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUncheckedUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  superlatives?: Prisma.LeagueSuperlativeUncheckedUpdateManyWithoutLeagueNestedInput;
+};
+
+export type LeagueCreateWithoutSuperlativesInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  platform: $Enums.Platform;
+  platformLeagueId: string;
+  name: string;
+  season: number;
+  leagueType?: $Enums.LeagueType;
+  scoringFormat?: $Enums.ScoringFormat;
+  rosterSize?: number;
+  teamCount: number;
+  members?: Prisma.LeagueMemberCreateNestedManyWithoutLeagueInput;
+  rosters?: Prisma.RosterCreateNestedManyWithoutLeagueInput;
+  matchups?: Prisma.MatchupCreateNestedManyWithoutLeagueInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsCreateNestedManyWithoutLeagueInput;
+};
+
+export type LeagueUncheckedCreateWithoutSuperlativesInput = {
+  id?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  platform: $Enums.Platform;
+  platformLeagueId: string;
+  name: string;
+  season: number;
+  leagueType?: $Enums.LeagueType;
+  scoringFormat?: $Enums.ScoringFormat;
+  rosterSize?: number;
+  teamCount: number;
+  members?: Prisma.LeagueMemberUncheckedCreateNestedManyWithoutLeagueInput;
+  rosters?: Prisma.RosterUncheckedCreateNestedManyWithoutLeagueInput;
+  matchups?: Prisma.MatchupUncheckedCreateNestedManyWithoutLeagueInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutLeagueInput;
+  settings?: Prisma.LeagueSettingsUncheckedCreateNestedOneWithoutLeagueInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedCreateNestedManyWithoutLeagueInput;
+};
+
+export type LeagueCreateOrConnectWithoutSuperlativesInput = {
+  where: Prisma.LeagueWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSuperlativesInput,
+    Prisma.LeagueUncheckedCreateWithoutSuperlativesInput
+  >;
+};
+
+export type LeagueUpsertWithoutSuperlativesInput = {
+  update: Prisma.XOR<
+    Prisma.LeagueUpdateWithoutSuperlativesInput,
+    Prisma.LeagueUncheckedUpdateWithoutSuperlativesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LeagueCreateWithoutSuperlativesInput,
+    Prisma.LeagueUncheckedCreateWithoutSuperlativesInput
+  >;
+  where?: Prisma.LeagueWhereInput;
+};
+
+export type LeagueUpdateToOneWithWhereWithoutSuperlativesInput = {
+  where?: Prisma.LeagueWhereInput;
+  data: Prisma.XOR<
+    Prisma.LeagueUpdateWithoutSuperlativesInput,
+    Prisma.LeagueUncheckedUpdateWithoutSuperlativesInput
+  >;
+};
+
+export type LeagueUpdateWithoutSuperlativesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  platform?: Prisma.EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+  platformLeagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  season?: Prisma.IntFieldUpdateOperationsInput | number;
+  leagueType?: Prisma.EnumLeagueTypeFieldUpdateOperationsInput | $Enums.LeagueType;
+  scoringFormat?: Prisma.EnumScoringFormatFieldUpdateOperationsInput | $Enums.ScoringFormat;
+  rosterSize?: Prisma.IntFieldUpdateOperationsInput | number;
+  teamCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  members?: Prisma.LeagueMemberUpdateManyWithoutLeagueNestedInput;
+  rosters?: Prisma.RosterUpdateManyWithoutLeagueNestedInput;
+  matchups?: Prisma.MatchupUpdateManyWithoutLeagueNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUpdateManyWithoutLeagueNestedInput;
+};
+
+export type LeagueUncheckedUpdateWithoutSuperlativesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  platform?: Prisma.EnumPlatformFieldUpdateOperationsInput | $Enums.Platform;
+  platformLeagueId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  season?: Prisma.IntFieldUpdateOperationsInput | number;
+  leagueType?: Prisma.EnumLeagueTypeFieldUpdateOperationsInput | $Enums.LeagueType;
+  scoringFormat?: Prisma.EnumScoringFormatFieldUpdateOperationsInput | $Enums.ScoringFormat;
+  rosterSize?: Prisma.IntFieldUpdateOperationsInput | number;
+  teamCount?: Prisma.IntFieldUpdateOperationsInput | number;
+  members?: Prisma.LeagueMemberUncheckedUpdateManyWithoutLeagueNestedInput;
+  rosters?: Prisma.RosterUncheckedUpdateManyWithoutLeagueNestedInput;
+  matchups?: Prisma.MatchupUncheckedUpdateManyWithoutLeagueNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutLeagueNestedInput;
+  settings?: Prisma.LeagueSettingsUncheckedUpdateOneWithoutLeagueNestedInput;
+  weeklyAnalytics?: Prisma.TeamWeeklyAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
+  seasonAnalytics?: Prisma.TeamSeasonAnalyticsUncheckedUpdateManyWithoutLeagueNestedInput;
 };
 
 /**
@@ -1045,6 +1695,9 @@ export type LeagueCountOutputType = {
   rosters: number;
   matchups: number;
   transactions: number;
+  weeklyAnalytics: number;
+  seasonAnalytics: number;
+  superlatives: number;
 };
 
 export type LeagueCountOutputTypeSelect<
@@ -1054,6 +1707,9 @@ export type LeagueCountOutputTypeSelect<
   rosters?: boolean | LeagueCountOutputTypeCountRostersArgs;
   matchups?: boolean | LeagueCountOutputTypeCountMatchupsArgs;
   transactions?: boolean | LeagueCountOutputTypeCountTransactionsArgs;
+  weeklyAnalytics?: boolean | LeagueCountOutputTypeCountWeeklyAnalyticsArgs;
+  seasonAnalytics?: boolean | LeagueCountOutputTypeCountSeasonAnalyticsArgs;
+  superlatives?: boolean | LeagueCountOutputTypeCountSuperlativesArgs;
 };
 
 /**
@@ -1104,6 +1760,33 @@ export type LeagueCountOutputTypeCountTransactionsArgs<
   where?: Prisma.TransactionWhereInput;
 };
 
+/**
+ * LeagueCountOutputType without action
+ */
+export type LeagueCountOutputTypeCountWeeklyAnalyticsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.TeamWeeklyAnalyticsWhereInput;
+};
+
+/**
+ * LeagueCountOutputType without action
+ */
+export type LeagueCountOutputTypeCountSeasonAnalyticsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.TeamSeasonAnalyticsWhereInput;
+};
+
+/**
+ * LeagueCountOutputType without action
+ */
+export type LeagueCountOutputTypeCountSuperlativesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LeagueSuperlativeWhereInput;
+};
+
 export type LeagueSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
@@ -1123,6 +1806,10 @@ export type LeagueSelect<
     rosters?: boolean | Prisma.League$rostersArgs<ExtArgs>;
     matchups?: boolean | Prisma.League$matchupsArgs<ExtArgs>;
     transactions?: boolean | Prisma.League$transactionsArgs<ExtArgs>;
+    settings?: boolean | Prisma.League$settingsArgs<ExtArgs>;
+    weeklyAnalytics?: boolean | Prisma.League$weeklyAnalyticsArgs<ExtArgs>;
+    seasonAnalytics?: boolean | Prisma.League$seasonAnalyticsArgs<ExtArgs>;
+    superlatives?: boolean | Prisma.League$superlativesArgs<ExtArgs>;
     _count?: boolean | Prisma.LeagueCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['league']
@@ -1203,6 +1890,10 @@ export type LeagueInclude<
   rosters?: boolean | Prisma.League$rostersArgs<ExtArgs>;
   matchups?: boolean | Prisma.League$matchupsArgs<ExtArgs>;
   transactions?: boolean | Prisma.League$transactionsArgs<ExtArgs>;
+  settings?: boolean | Prisma.League$settingsArgs<ExtArgs>;
+  weeklyAnalytics?: boolean | Prisma.League$weeklyAnalyticsArgs<ExtArgs>;
+  seasonAnalytics?: boolean | Prisma.League$seasonAnalyticsArgs<ExtArgs>;
+  superlatives?: boolean | Prisma.League$superlativesArgs<ExtArgs>;
   _count?: boolean | Prisma.LeagueCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type LeagueIncludeCreateManyAndReturn<
@@ -1221,6 +1912,10 @@ export type $LeaguePayload<
     rosters: Prisma.$RosterPayload<ExtArgs>[];
     matchups: Prisma.$MatchupPayload<ExtArgs>[];
     transactions: Prisma.$TransactionPayload<ExtArgs>[];
+    settings: Prisma.$LeagueSettingsPayload<ExtArgs> | null;
+    weeklyAnalytics: Prisma.$TeamWeeklyAnalyticsPayload<ExtArgs>[];
+    seasonAnalytics: Prisma.$TeamSeasonAnalyticsPayload<ExtArgs>[];
+    superlatives: Prisma.$LeagueSuperlativePayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1789,6 +2484,52 @@ export interface Prisma__LeagueClient<
       >
     | Null
   >;
+  settings<T extends Prisma.League$settingsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.League$settingsArgs<ExtArgs>>
+  ): Prisma.Prisma__LeagueSettingsClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$LeagueSettingsPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  weeklyAnalytics<T extends Prisma.League$weeklyAnalyticsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.League$weeklyAnalyticsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$TeamWeeklyAnalyticsPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  seasonAnalytics<T extends Prisma.League$seasonAnalyticsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.League$seasonAnalyticsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$TeamSeasonAnalyticsPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  superlatives<T extends Prisma.League$superlativesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.League$superlativesArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LeagueSuperlativePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2351,6 +3092,115 @@ export type League$transactionsArgs<
   take?: number;
   skip?: number;
   distinct?: Prisma.TransactionScalarFieldEnum | Prisma.TransactionScalarFieldEnum[];
+};
+
+/**
+ * League.settings
+ */
+export type League$settingsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the LeagueSettings
+   */
+  select?: Prisma.LeagueSettingsSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the LeagueSettings
+   */
+  omit?: Prisma.LeagueSettingsOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeagueSettingsInclude<ExtArgs> | null;
+  where?: Prisma.LeagueSettingsWhereInput;
+};
+
+/**
+ * League.weeklyAnalytics
+ */
+export type League$weeklyAnalyticsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the TeamWeeklyAnalytics
+   */
+  select?: Prisma.TeamWeeklyAnalyticsSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the TeamWeeklyAnalytics
+   */
+  omit?: Prisma.TeamWeeklyAnalyticsOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeamWeeklyAnalyticsInclude<ExtArgs> | null;
+  where?: Prisma.TeamWeeklyAnalyticsWhereInput;
+  orderBy?:
+    | Prisma.TeamWeeklyAnalyticsOrderByWithRelationInput
+    | Prisma.TeamWeeklyAnalyticsOrderByWithRelationInput[];
+  cursor?: Prisma.TeamWeeklyAnalyticsWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.TeamWeeklyAnalyticsScalarFieldEnum
+    | Prisma.TeamWeeklyAnalyticsScalarFieldEnum[];
+};
+
+/**
+ * League.seasonAnalytics
+ */
+export type League$seasonAnalyticsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the TeamSeasonAnalytics
+   */
+  select?: Prisma.TeamSeasonAnalyticsSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the TeamSeasonAnalytics
+   */
+  omit?: Prisma.TeamSeasonAnalyticsOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TeamSeasonAnalyticsInclude<ExtArgs> | null;
+  where?: Prisma.TeamSeasonAnalyticsWhereInput;
+  orderBy?:
+    | Prisma.TeamSeasonAnalyticsOrderByWithRelationInput
+    | Prisma.TeamSeasonAnalyticsOrderByWithRelationInput[];
+  cursor?: Prisma.TeamSeasonAnalyticsWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.TeamSeasonAnalyticsScalarFieldEnum
+    | Prisma.TeamSeasonAnalyticsScalarFieldEnum[];
+};
+
+/**
+ * League.superlatives
+ */
+export type League$superlativesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the LeagueSuperlative
+   */
+  select?: Prisma.LeagueSuperlativeSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the LeagueSuperlative
+   */
+  omit?: Prisma.LeagueSuperlativeOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeagueSuperlativeInclude<ExtArgs> | null;
+  where?: Prisma.LeagueSuperlativeWhereInput;
+  orderBy?:
+    | Prisma.LeagueSuperlativeOrderByWithRelationInput
+    | Prisma.LeagueSuperlativeOrderByWithRelationInput[];
+  cursor?: Prisma.LeagueSuperlativeWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.LeagueSuperlativeScalarFieldEnum | Prisma.LeagueSuperlativeScalarFieldEnum[];
 };
 
 /**

@@ -6,7 +6,14 @@ import {
   createSchedulerWorker,
   schedulerQueue,
 } from './queues/index.js';
-import { PollingService, NotificationDispatcher } from './services/index.js';
+import {
+  PollingService,
+  NotificationDispatcher,
+  handleKtcScrape,
+  createReportCardHandler,
+  handleVorpUpdate,
+  handleWarCalculation,
+} from './services/index.js';
 import { sleeperClient, CachedSleeperClient, CacheService } from '@fantasy/api-client';
 import { buildTradeEmbed, buildWaiverEmbed } from './embeds/index.js';
 
@@ -39,6 +46,8 @@ async function main() {
 
   await initializeScheduledJobs();
 
+  const reportCardHandler = createReportCardHandler(dispatcher);
+
   const schedulerWorker = createSchedulerWorker({
     lineupReminder: async () => {
       console.log('Lineup reminder triggered');
@@ -49,6 +58,10 @@ async function main() {
     standingsUpdate: async () => {
       console.log('Standings update triggered');
     },
+    ktcScrape: handleKtcScrape,
+    weeklyReportCard: reportCardHandler,
+    vorpUpdate: handleVorpUpdate,
+    warCalculation: handleWarCalculation,
   });
 
   const pollingService = new PollingService();
