@@ -1,1 +1,14 @@
 pnpm lint-staged
+
+STAGED_DIFF=$(git diff --cached)
+[ -z "$STAGED_DIFF" ] && exit 0
+
+echo "🔍 Running Gemini review..."
+RESULT=$(echo "$STAGED_DIFF" | gemini -p "Categorize issues: CRITICAL (security, data loss), WARNING (bugs, quality), INFO (style). JSON output only." --output-format json)
+
+if echo "$RESULT" | grep -qi "critical"; then
+    echo "❌ Critical issues - commit blocked"
+    echo "$RESULT" | jq -r '.response'
+    exit 1
+fi
+echo "✅ Review passed"
