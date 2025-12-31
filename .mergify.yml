@@ -1,0 +1,30 @@
+pull_request_rules:
+  - name: Auto-merge when CI passes
+    conditions:
+      - base=main
+      - check-success=lint
+      - check-success=format
+      - check-success=typecheck
+      - check-success=build
+      - check-success=test
+    actions:
+      merge:
+        method: squash
+        commit_message_template: |
+          {{ title }} (#{{ number }})
+
+          {{ body }}
+
+  - name: Delete branch after merge
+    conditions:
+      - merged
+    actions:
+      delete_head_branch: {}
+
+  - name: Label WIP PRs
+    conditions:
+      - title~=(?i)^\[?WIP\]?
+    actions:
+      label:
+        add:
+          - work-in-progress
