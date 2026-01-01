@@ -44,8 +44,5 @@
       "ruff format",
       "ruff check --fix"
     ]
-  },
-  "dependencies": {
-    "better-auth": "^1.4.9"
   }
 }
