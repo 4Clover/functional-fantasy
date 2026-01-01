@@ -12,4 +12,28 @@ ignoredBuiltDependencies:
   - prisma
   - sharp
 
-onlyBuiltDependencies: '["prisma", "@prisma/client", "@prisma/engines", "esbuild", "sharp"]'
+onlyBuiltDependencies:
+  - ' '
+  - '"'
+  - ','
+  - /
+  - '@'
+  - '@nestjs/core'
+  - '['
+  - ']'
+  - a
+  - b
+  - c
+  - d
+  - e
+  - g
+  - h
+  - i
+  - l
+  - m
+  - n
+  - p
+  - r
+  - s
+  - t
+  - u

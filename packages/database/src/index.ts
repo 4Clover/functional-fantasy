@@ -3,7 +3,12 @@ import pg from 'pg';
 
 import { PrismaClient } from './generated/client/client.js';
 
-const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  throw new Error('DATABASE_URL environment variable is not set');
+}
+
+const pool = new pg.Pool({ connectionString });
 const adapter = new PrismaPg(pool);
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };

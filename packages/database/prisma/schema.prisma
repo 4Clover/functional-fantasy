@@ -8,43 +8,76 @@ generator client {
 }
 
 // ============================================
-// USER & AUTHENTICATION
+// USER & AUTHENTICATION (Better Auth)
 // ============================================
 
 model User {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  displayName String?
-  email       String?  @unique
-  avatarUrl   String?
+  // Better Auth required fields
+  name          String?
+  email         String   @unique
+  emailVerified Boolean  @default(false)
+  image         String?
 
-  platformAccounts  PlatformAccount[]
+  // Legacy fields (backward compatibility)
+  displayName   String?
+  avatarUrl     String?
+
+  // Relations
   leagueMemberships LeagueMember[]
+  sessions          Session[]
+  accounts          Account[]
 
   @@map("users")
 }
 
-model PlatformAccount {
-  id         String   @id @default(cuid())
-  userId     String
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  platform   Platform
-  platformId String
-  username   String?
-  avatarUrl  String?
-
-  accessToken  String?
-  refreshToken String?
-  expiresAt    DateTime?
-
+model Session {
+  id        String   @id @default(cuid())
+  expiresAt DateTime
+  token     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
 
-  @@unique([platform, platformId])
-  @@map("platform_accounts")
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@unique([userId, providerId])
+  @@map("accounts")
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("verifications")
 }
 
 enum Platform {
